@@ -1,9 +1,14 @@
-import settings from '../config/settings.dev.js';
+import settings from '../config/settings.js';
+
+const jsonHeaders = {
+  'Content-Type': 'application/json',
+};
 
 const MarcaService = {
   cadastrar(marca) {
     return fetch(`${settings.baseUrl}/marcas`, {
       method: 'POST',
+      headers: jsonHeaders,
       body: JSON.stringify(marca)
     }).then(r => r.json());
   },
@@ -11,6 +16,7 @@ const MarcaService = {
   alterar(marca) {
     return fetch(`${settings.baseUrl}/marcas/${marca.id}`, {
       method: 'PUT',
+      headers: jsonHeaders,
       body: JSON.stringify(marca)
     }).then(r => r.json());
   },

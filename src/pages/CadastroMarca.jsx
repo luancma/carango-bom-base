@@ -1,8 +1,14 @@
-import { Button, TextField } from '@material-ui/core';
+import { Button, makeStyles, TextField } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import useErros from '../hooks/useErros';
 import MarcaService from '../services/MarcaService';
+
+const useStyles = makeStyles(() => ({
+    actions: {
+        marginLeft: '10px',
+    }
+}));
 
 function CadastroMarca() {
 
@@ -11,6 +17,8 @@ function CadastroMarca() {
     const history = useHistory();
 
     const { id } = useParams();
+
+    const classes = useStyles();
 
     const validacoes = {
         marca: dado => {
@@ -37,6 +45,7 @@ function CadastroMarca() {
     }, [id]); // eslint-disable-line
 
     return (
+
         <form onSubmit={(event) => {
             event.preventDefault();
             if (possoEnviar()) {
@@ -79,6 +88,7 @@ function CadastroMarca() {
             </Button>
 
             <Button
+                className={classes.actions}
                 variant="contained"
                 color="secondary"
                 onClick={cancelar}>

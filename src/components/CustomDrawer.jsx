@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import List from "@material-ui/core/List";
 import Drawer from "@material-ui/core/Drawer";
 import Divider from "@material-ui/core/Divider";
@@ -84,28 +85,28 @@ export default ({ open, setOpen }) => {
       </div>
       <Divider />
       <List>
-        <ListItem button key="Entrar">
+        <ListItem button component={Link} to="/login" key="Entrar">
           <ListItemIcon><AccountCircleIcon /></ListItemIcon>
           <ListItemText primary="Entrar" />
         </ListItem>
-        <ListItem button key="Sair">
+        <ListItem button component={Link} to="/logout" key="Sair">
           <ListItemIcon><ExitToAppIcon /></ListItemIcon>
           <ListItemText primary="Sair" />
         </ListItem>
         <Divider />
-        <ListItem button key="Veículos">
-        <ListItemIcon><TimeToLeaveIcon /></ListItemIcon>
-          <ListItemText primary="Veículos" />
-        </ListItem>
-        <ListItem button key="Marcas">
+          <ListItem button component={Link} to="/veiculos" key="Veículos">
+            <ListItemIcon><TimeToLeaveIcon /></ListItemIcon>
+            <ListItemText primary="Veículos" />
+          </ListItem>
+        <ListItem button component={Link} to="/marcas" key="Marcas">
           <ListItemIcon><FlagIcon /></ListItemIcon>
           <ListItemText primary="Marcas" />
         </ListItem>
-        <ListItem button key="Usuários">
+        <ListItem button component={Link} to="/usuarios" key="Usuários">
           <ListItemIcon><GroupIcon /></ListItemIcon>
           <ListItemText primary="Usuários" />
         </ListItem>
-        <ListItem button key="Dashboard">
+        <ListItem button component={Link} to="/dashboard" key="Dashboard">
           <ListItemIcon><DashboardIcon /></ListItemIcon>
           <ListItemText primary="Dashboard" />
         </ListItem>
