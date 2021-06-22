@@ -4,9 +4,9 @@ import { ptBR } from '@material-ui/core/locale';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import './App.css';
 import CadastroMarca from './pages/CadastroMarca';
 import ListagemMarcas from './pages/ListagemMarcas';
+import Navbar from './components/Navbar';
 
 const muiTheme = createMuiTheme({
   palette: {
@@ -14,6 +14,7 @@ const muiTheme = createMuiTheme({
       main: blue[900],
     }
   },
+  drawerWidth: 240
 }, ptBR);
 
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3),
+    padding: theme.spacing(10)
   },
 }));
 
@@ -41,8 +42,8 @@ function App() {
     <ThemeProvider theme={muiTheme}>
       <div className={classes.root}>
         <CssBaseline />
+        <Navbar />
         <main className={classes.content}>
-          <div className={classes.toolbar} />
           <Container component="article" maxWidth="md">
             <Switch>
               <Route path="/cadastro-marca">

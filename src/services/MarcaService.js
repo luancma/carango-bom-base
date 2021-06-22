@@ -1,28 +1,30 @@
+import settings from '../config/settings.dev.js';
+
 const MarcaService = {
   cadastrar(marca) {
-    return fetch('https://carango-bom-api.herokuapp.com/marcas', {
+    return fetch(`${settings.baseUrl}/marcas`, {
       method: 'POST',
       body: JSON.stringify(marca)
     }).then(r => r.json());
   },
 
   alterar(marca) {
-    return fetch('https://carango-bom-api.herokuapp.com/marcas/' + marca.id, {
+    return fetch(`${settings.baseUrl}/marcas/${marca.id}`, {
       method: 'PUT',
       body: JSON.stringify(marca)
     }).then(r => r.json());
   },
 
   consultar(id) {
-    return fetch('https://carango-bom-api.herokuapp.com/marcas/' + id).then(r => r.json());
+    return fetch(`${settings.baseUrl}/marcas/${id}`).then(r => r.json());
   },
 
   listar() {
-    return fetch('https://carango-bom-api.herokuapp.com/marcas').then(r => r.json());
+    return fetch(`${settings.baseUrl}/marcas`).then(r => r.json());
   },
 
   excluir(marca) {
-    return fetch('https://carango-bom-api.herokuapp.com/marcas/' + marca.id, {
+    return fetch(`${settings.baseUrl}/marcas/${marca.id}`, {
       method: 'DELETE',
     })
       .then(r => r.json());
