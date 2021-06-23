@@ -1,6 +1,5 @@
-import { Button, Fab, makeStyles } from '@material-ui/core';
+import { Box, Button, Fab, makeStyles } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
-import AddIcon from '@material-ui/icons/Add';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import MarcaService from '../services/MarcaService';
@@ -10,16 +9,7 @@ const colunas = [
 ];
 
 const useStyles = makeStyles(() => ({
-    fab: {
-        position: 'absolute',
-        bottom: '100px',
-        right: '100px',
-    },
-    actionsToolbar: {
-        float: 'right'
-    },
     actions: {
-        top: '10px',
         marginLeft: '10px',
     }
 }));
@@ -42,8 +32,6 @@ function ListagemMarcas() {
             });
     }
 
-    // TODO: Avaliar remover disable na próxima linha
-    // eslint-disable-next-line
     useEffect(() => carregarMarcas(), []);
 
     function carregarMarcas() {
@@ -52,33 +40,41 @@ function ListagemMarcas() {
     }
 
     return (
-        <div style={{ height: 300, width: '100%' }}>
-            <DataGrid rows={marcas} columns={colunas}
+        <div style={{ width: '100%' }}>
+            <DataGrid rows={marcas} 
+                columns={colunas} 
+                autoHeight={true}
+                pageSize={10}
                 onRowSelected={gridSelection => setMarcaSelecionada(gridSelection.data)}
             />
-
-            <div className={classes.actionsToolbar}>
-                <Button
-                    className={classes.actions}
-                    variant="contained"
-                    color="secondary"
-                    disabled={!marcaSelecionada}
-                    onClick={() => excluir()}>
-                    Excluir
-                        </Button>
-                <Button
-                    className={classes.actions}
-                    variant="contained"
-                    color="primary"
-                    disabled={!marcaSelecionada}
-                    onClick={() => alterar()}>
-                    Alterar
-                </Button>
-            </div>
-
-            <Fab color="primary" aria-label="add" className={classes.fab} onClick={() => history.push('/cadastro-marca')}>
-                <AddIcon />
-            </Fab>
+            <Box width={1} marginTop="10px" display="flex" justifyContent="space-between">
+                <div>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={() => history.push('/cadastro-marca')}>
+                        Adicionar
+                            </Button>
+                </div>
+                <div className={classes.actionsToolbar}>
+                    <Button
+                        className={classes.actions}
+                        variant="contained"
+                        color="secondary"
+                        disabled={!marcaSelecionada}
+                        onClick={() => excluir()}>
+                        Excluir
+                            </Button>
+                    <Button
+                        className={classes.actions}
+                        variant="contained"
+                        color="primary"
+                        disabled={!marcaSelecionada}
+                        onClick={() => alterar()}>
+                        Alterar
+                    </Button>
+                </div>
+            </Box>
         </div>
     );
 }
