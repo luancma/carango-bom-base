@@ -1,14 +1,20 @@
 import { DataGrid } from "@material-ui/data-grid";
-import Veiculo from "../models/Veiculo";
-import { Box, Button } from "@material-ui/core";
+import { Box, Button, makeStyles } from "@material-ui/core";
 import { useHistory } from "react-router";
 import React, { useEffect, useState } from 'react';
 import VeiculoService from "../services/VeiculoService";
+
+const useStyles = makeStyles(() => ({
+  actions: {
+      marginLeft: '10px',
+  }
+}));
 
 function ListagemVeiculos() {
   const history = useHistory();
   const [veiculoSelecionado, setVeiculoSelecionado] = useState();
   const [veiculos, setVeiculos] = useState([]);
+  const classes = useStyles();
 
   useEffect(() => carregarVeiculos(), []);
 
@@ -17,10 +23,10 @@ function ListagemVeiculos() {
   }
 
   function excluir() {
-    /*VeiculoService.excluir(veiculoSelecionado).then(() => {
+    VeiculoService.excluir(veiculoSelecionado).then(() => {
         setVeiculoSelecionado(null);
         carregarVeiculos();
-    });*/
+    });
   }
 
   function carregarVeiculos() {
@@ -58,9 +64,9 @@ function ListagemVeiculos() {
             Adicionar
           </Button>
         </div>
-        <div /*className={classes.actionsToolbar}*/>
+        <div className={classes.actionsToolbar}>
           <Button
-            //className={classes.actions}
+            className={classes.actions}
             variant="contained"
             color="secondary"
             disabled={!veiculoSelecionado}
@@ -69,7 +75,7 @@ function ListagemVeiculos() {
             Excluir
           </Button>
           <Button
-            //className={classes.actions}
+            className={classes.actions}
             variant="contained"
             color="primary"
             disabled={!veiculoSelecionado}
