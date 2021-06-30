@@ -1,8 +1,9 @@
-import { Button, makeStyles, TextField } from "@material-ui/core";
+import { Button, makeStyles, TextField, FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import useErros from "../hooks/useErros";
 import Veiculo from "../models/Veiculo";
+import MarcaService from "../services/MarcaService";
 import VeiculoService from "../services/VeiculoService";
 
 const useStyles = makeStyles(() => ({
@@ -13,6 +14,7 @@ const useStyles = makeStyles(() => ({
 
 function CadastroVeiculo() {
   const [veiculo, setVeiculo] = useState(Veiculo.vazio());
+  const [marcas, setMarcas] = useState([]);
 
   const history = useHistory();
 
@@ -40,6 +42,10 @@ function CadastroVeiculo() {
     if (id) {
       VeiculoService.consultar(id).then((v) => setVeiculo(v));
     }
+
+    MarcaService.listar()
+      .then(marcas => setMarcas(marcas));
+
   }, [id]);
 
   return (
@@ -60,24 +66,20 @@ function CadastroVeiculo() {
         }
       }}
     >
-      <TextField
-        // ToDo: Transformar em um select com as marcas disponíveis
-        value={veiculo.marcaId}
-        onChange={(evt) =>
-          setVeiculo({ ...veiculo, marcaId: evt.target.value })
-        }
-        // onBlur={validarCampos}
-        // helperText={erros.veiculo.texto}
-        // error={!erros.veiculo.valido}
-        name="idMarca"
-        id="idMarca"
-        label="Marca"
-        type="Number"
-        variant="outlined"
-        fullWidth
-        required
-        margin="normal"
-      />
+      <FormControl variant="outlined" fullWidth>
+        <InputLabel id="demo-simple-select-outlined-label">Marca</InputLabel>
+        <Select
+          labelId="demo-simple-select-outlined-label"
+          id="demo-simple-select-outlined"
+          value={veiculo.marcaId}
+          onChange={ (evt) => setVeiculo({ ...veiculo, marcaId: evt.target.value }) }
+          label="Marca"
+          fullWidth
+        >
+          { marcas.map(marca => <MenuItem key={marca.id} value={marca.id}>{marca.nome}</MenuItem>) }
+        </Select>
+      </FormControl>
+
       <TextField
         value={veiculo.ano}
         onChange={(evt) => setVeiculo({ ...veiculo, ano: evt.target.value })}
