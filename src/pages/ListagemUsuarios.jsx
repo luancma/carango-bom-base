@@ -26,8 +26,7 @@ const useStyles = makeStyles(() => ({
     }
   
     function carregarUsuarios() {
-        setUsuarios(UsuarioService.listar());
-          /*.then(dados => setUsuarios(dados));*/
+          UsuarioService.listar().then(dados => setUsuarios(dados));
       }
   
   

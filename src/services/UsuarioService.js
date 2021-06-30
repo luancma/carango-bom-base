@@ -26,11 +26,9 @@ const UsuarioService = {
     return fetch(`${settings.baseUrl}/usuarios/${id}`).then(r => r.json());
   },
 
-  listar() {
-    return [{nome: 'Gustavo', id: '999'}];
-    
-    /*fetch(`${settings.baseUrl}/usuarios`)
-      .then(r => r.json());*/
+  listar() {    
+    fetch(`${settings.baseUrl}/usuarios`)
+      .then(r => r.json());
   },
 
   excluir(usuario) {
