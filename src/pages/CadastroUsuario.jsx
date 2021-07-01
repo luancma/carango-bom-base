@@ -33,7 +33,7 @@ function CadastroUsuario() {
       }
     },
     senha: (dado) => {
-      if(dado && dado.length > 3){
+      if(dado && dado.length > 6){
         return {valido: true };
       }else{
         return {valido:false, texto: "O campo senha não deve estar vazio e deve conter mais de 3 caracteres."}
