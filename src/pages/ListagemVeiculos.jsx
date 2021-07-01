@@ -1,13 +1,13 @@
 import { DataGrid } from "@material-ui/data-grid";
 import { Box, Button, makeStyles } from "@material-ui/core";
 import { useHistory } from "react-router";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import VeiculoService from "../services/VeiculoService";
 
 const useStyles = makeStyles(() => ({
   actions: {
-      marginLeft: '10px',
-  }
+    marginLeft: "10px",
+  },
 }));
 
 function ListagemVeiculos() {
@@ -24,20 +24,17 @@ function ListagemVeiculos() {
 
   function excluir() {
     VeiculoService.excluir(veiculoSelecionado).then(() => {
-        setVeiculoSelecionado(null);
-        carregarVeiculos();
+      setVeiculoSelecionado(null);
+      carregarVeiculos();
     });
   }
 
   function carregarVeiculos() {
-    VeiculoService.listar()
-        .then(dados => setVeiculos(dados));
-    }
-
+    VeiculoService.listar().then((dados) => setVeiculos(dados));
+  }
 
   const columns = [
-    { field: "marca", headerName: "Marca", 
-    valueFormatter: (params) => params.row?.marca?.nome,flex: 1 },
+    { field: "marca", headerName: "Marca", flex: 1 },
     { field: "modelo", headerName: "Modelo", flex: 1 },
     { field: "ano", headerName: "Ano", flex: 1 },
     { field: "valor", headerName: "Valor", flex: 1 },
@@ -45,8 +42,14 @@ function ListagemVeiculos() {
 
   return (
     <div>
-      <DataGrid rows={veiculos} columns={columns} pageSize={5} autoHeight={true}
-      onRowSelected={gridSelection => setVeiculoSelecionado(gridSelection.data)}
+      <DataGrid
+        rows={veiculos}
+        columns={columns}
+        pageSize={5}
+        autoHeight={true}
+        onRowSelected={(gridSelection) =>
+          setVeiculoSelecionado(gridSelection.data)
+        }
       />
 
       <Box
