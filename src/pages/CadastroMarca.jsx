@@ -36,13 +36,12 @@ function CadastroMarca() {
         history.goBack();
     }
 
-    // TODO: Avaliar remover disable na próxima linha
     useEffect(() => {
         if (id) {
             MarcaService.consultar(id)
                 .then(m => setMarca(m.nome));
         }
-    }, [id]); // eslint-disable-line
+    }, [id]);
 
     return (
 

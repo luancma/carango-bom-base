@@ -8,6 +8,9 @@ import CadastroMarca from './pages/CadastroMarca';
 import ListagemMarcas from './pages/ListagemMarcas';
 import Navbar from './components/Navbar';
 import ListagemVeiculos from './pages/ListagemVeiculos';
+import CadastroVeiculo from './pages/CadastroVeiculo';
+import ListagemUsuarios from './pages/ListagemUsuarios';
+import CadastroUsuario from './pages/CadastroUsuario';
 
 const muiTheme = createMuiTheme({
   palette: {
@@ -55,6 +58,18 @@ function App() {
               </Route>
               <Route path="/veiculos">
                 <ListagemVeiculos></ListagemVeiculos>
+              </Route>
+              <Route path='/cadastro-veiculo'>
+                <CadastroVeiculo></CadastroVeiculo>
+              </Route>
+              <Route path='/alteracao-veiculo/:id'>
+                <CadastroVeiculo></CadastroVeiculo>
+              </Route>
+              <Route path="/usuarios">
+                <ListagemUsuarios></ListagemUsuarios>
+              </Route>
+              <Route path="/cadastro-usuario">
+                <CadastroUsuario></CadastroUsuario>
               </Route>
               <Route path="/">
                 <ListagemMarcas></ListagemMarcas>
