@@ -73,7 +73,7 @@ function CadastroVeiculo() {
       setNoEstadoInicial(false);
     }
 
-    MarcaService.listar().then((marcas) => setMarcas(marcas));
+    MarcaService.listar().then((listaMarcas) => setMarcas(listaMarcas));
   }, [id]);
 
   return (
