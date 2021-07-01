@@ -27,7 +27,7 @@ const UsuarioService = {
   },
 
   listar() {    
-    fetch(`${settings.baseUrl}/usuarios`)
+    return fetch(`${settings.baseUrl}/usuarios`)
       .then(r => r.json());
   },
 

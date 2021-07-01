@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import useErros from "../hooks/useErros";
 import UsuarioService from "../services/UsuarioService";
+import Usuario from '../models/Usuario';
 
 const useStyles = makeStyles(() => ({
   actions: {
@@ -11,7 +12,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 function CadastroUsuario() {
-  const [usuario, setUsuario] = useState("");
+  const [usuario, setUsuario] = useState(new Usuario());
   const [noEstadoInicial, setNoEstadoInicial] = useState(true);
   const [confirmacaoSenha, setConfirmacaoSenha] = useState("");
 
@@ -65,7 +66,7 @@ function CadastroUsuario() {
         event.preventDefault();
         if (possoEnviar()) {
           UsuarioService.cadastrar(usuario).then((res) => {
-            setUsuario("");
+            setUsuario(new Usuario());
             history.goBack();
           });
         }
