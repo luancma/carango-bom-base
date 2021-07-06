@@ -1,8 +1,7 @@
 import { screen, render } from "@testing-library/react";
 import { createMemoryHistory } from "history";
 import { Router } from "react-router-dom";
-
-import App from "./App";
+import App from "../App";
 
 describe("Testando aaa", () => {
   it("Shoud render the app component", () => {
