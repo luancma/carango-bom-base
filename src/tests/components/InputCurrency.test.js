@@ -7,7 +7,7 @@ import InputCurrency, { parseEventValueToNumberIfValueExist } from 'components/I
 describe('InputCurrency component', () => {
   it('should display the label passed as prop', () => {
     const label = 'Amount';
-    render(<InputCurrency label={label} />);
+    render(<InputCurrency id="input-currency" label={label} />);
     expect(screen.getByLabelText(label, { selector: 'input' })).toBeInTheDocument();
   })
 
@@ -79,13 +79,5 @@ describe('InputCurrency component', () => {
     const errors = { message: 'Obrigatório' }
     render(<InputCurrency minimum={0} value={10} currencySymbol="R$" errors={errors} />)
     expect(screen.getByText('Obrigatório')).toBeInTheDocument();
-  })
-
-  describe('parseEventValueToNumberIfValueExist', () => {
-    it('should not return NaN when event target value is empty', () => {
-      const event = { target: { value: "" } };
-      const result = parseEventValueToNumberIfValueExist(event);
-      expect(isNaN(result)).toBe(false)
-    })
   })
 })

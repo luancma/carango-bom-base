@@ -1,17 +1,8 @@
 import React from 'react';
 import { TextField, InputAdornment } from '@material-ui/core';
+import EventParserUtil from 'util/EventParserUtil';
 
-export const parseEventValueToNumberIfValueExist = event => {
-  let result = '';
-
-  if (event && event.target && event.target.value) {
-    result = parseFloat(event.target.value);
-  }
-
-  return result;
-}
-
-const InputCurrency = ({ value, label, minimum, errors, onChange, currencySymbol, focused, ...props }) => {
+const InputCurrency = ({ id, value, label, minimum, errors, onChange, currencySymbol, focused, ...props }) => {
   if ((value !== undefined && isNaN(value)) || (minimum !== undefined && value < minimum)) {
     return null
   }
@@ -24,7 +15,7 @@ const InputCurrency = ({ value, label, minimum, errors, onChange, currencySymbol
         (minimum === undefined || value === undefined) ||
         (minimum !== undefined && eventValue >= minimum)
       ) {
-        const amountValue = parseEventValueToNumberIfValueExist(event);
+        const amountValue = EventParserUtil.parseEventValueToNumberIfValueExist(event);
         onChange(amountValue);
       }
     }
@@ -36,10 +27,10 @@ const InputCurrency = ({ value, label, minimum, errors, onChange, currencySymbol
   return (
     <TextField
       inputRef={input => input && focused && input.focus()}
-      InputLabelProps={{ htmlFor: 'input-currency' }}
+      InputLabelProps={{ htmlFor: id }}
       inputProps={
         {
-          id: 'input-currency',
+          id,
           'data-testid': 'InputCurrency-input',
           min: minimum || 0
         }
