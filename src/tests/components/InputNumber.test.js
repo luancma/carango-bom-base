@@ -20,7 +20,7 @@ describe('InputNumber test', () => {
 
   it('should display label', () => {
     const label = 'Test Label';
-    render(<InputNumber label={label} />);
+    render(<InputNumber label={label} id={"id"}/>);
     expect(screen.getByLabelText(label, {selector: "input"})).toBeInTheDocument()    
   });
 
