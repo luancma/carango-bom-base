@@ -1,15 +1,18 @@
 import React from 'react';
 import { TextField } from '@material-ui/core';
 
-const InputText = ({ onChange, value, label }) => {
+const InputText = ({ onChange, onBlur, value, label, minLength, maxLength, id, ...props }) => {
   return (
     <TextField
-      inputProps={{ 'data-testid': 'InputText-input' }}
+      inputProps={{ id: id, minLength, maxLength }}
       onChange={onChange}
+      onBlur={onBlur}
       value={value}
       label={label}
       type="text"
-      InputLabelProps={{ 'data-testid': 'InputText-label' }}
+      InputLabelProps={{ htmlFor: id }}
+      variant="outlined"
+      {...props}
     />
   );
 };
