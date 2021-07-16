@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import InputText from "../InputText";
 import InputNumber from "../InputNumber";
 import InputCurrency from "../InputCurrency";
+import InputSelect from "../InputSelect";
 import { Box, Button } from "@material-ui/core";
 import PropTypes from "prop-types";
 
-function VehicleForm({ onSubmit, onCancel }) {
+function VehicleForm({ onSubmit, onCancel, brandOptions }) {
+  const [brand, setBrand] = useState("");
   const [model, setModel] = useState("");
   const [year, setYear] = useState(2021);
   const [value, setValue] = useState(0);
   const [minYear, maxYear] = [1900, 2022];
   const handleSubmit = event => {
     event.preventDefault();
-    const vehicle = { model, year, value };
+    const vehicle = { brand, model, year, value };
     onSubmit(vehicle);
   };
   const checkYearRange = event => {
@@ -26,6 +28,14 @@ function VehicleForm({ onSubmit, onCancel }) {
   };
   return (
     <form name="vehicle-form" onSubmit={handleSubmit}>
+      <InputSelect
+        value={brand}
+        onSelect={setBrand}
+        itemsSelect={brandOptions}
+        label="Marca"
+        id="marca"
+        required
+      />
       <InputText
         label="Modelo"
         id="modelo"
