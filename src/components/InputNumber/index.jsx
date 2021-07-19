@@ -2,8 +2,8 @@ import React from "react";
 import { TextField } from "@material-ui/core";
 
 const InputNumber = ({ id, value, label, min, max, onChange, ...props }) => {
-  const handlerOnChange = (event) => {
-    onChange(event.target.value);
+  const handlerOnChange = event => {
+    onChange(Number(event.target.value));
   };
   return (
     <TextField
@@ -13,6 +13,7 @@ const InputNumber = ({ id, value, label, min, max, onChange, ...props }) => {
       onChange={handlerOnChange}
       label={label}
       type="number"
+      variant="outlined"
       InputLabelProps={{ "data-testid": "InputNumber-label", htmlFor: id }}
     />
   );
