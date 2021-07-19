@@ -6,30 +6,14 @@ import InputSelect from "../InputSelect";
 import { Box, Button } from "@material-ui/core";
 import PropTypes from "prop-types";
 import useErros from "hooks/useErros";
+import { validations, minYear, maxYear } from "./validations";
 
 function VehicleForm({ onSubmit, onCancel, brandOptions, existingVehicle }) {
   const [brand, setBrand] = useState("");
   const [model, setModel] = useState("");
   const [year, setYear] = useState(2021);
   const [value, setValue] = useState(0);
-  const [minYear, maxYear] = [1900, 2022];
 
-  const validations = {
-    modelo: input => {
-      const valido = input && input.length >= 3 && input.length <= 100;
-      return {
-        valido,
-        texto: valido ? "" : "Modelo deve ter entre 3 e 100 caracteres.",
-      };
-    },
-    ano: input => {
-      const valido = input && input >= minYear && input <= maxYear;
-      return {
-        valido,
-        texto: valido ? "" : `Ano deve estar entre ${minYear} e ${maxYear}`,
-      };
-    },
-  };
   const [errors, validateFields, canSubmit] = useErros(validations);
 
   useEffect(() => {

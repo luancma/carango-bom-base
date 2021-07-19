@@ -2,6 +2,11 @@ import React from "react";
 import { screen, render, fireEvent } from "@testing-library/react";
 import VehicleForm from "../../components/VehicleForm";
 import userEvent from "@testing-library/user-event";
+import {
+  validations,
+  minYear,
+  maxYear,
+} from "components/VehicleForm/validations";
 
 const brandOptions = [
   { name: "brand 1", value: 1 },
@@ -60,6 +65,22 @@ describe("VehicleForm page", () => {
       model: "Modelo X",
       year: 2020,
       value: 40000,
+    });
+  });
+
+  it("should validate model and year", () => {
+    expect(validations.ano(minYear - 1)).toEqual({
+      valido: false,
+      texto: `Ano deve estar entre ${minYear} e ${maxYear}.`,
+    });
+    expect(validations.ano(maxYear)).toEqual({ valido: true, texto: "" });
+    expect(validations.modelo("A")).toEqual({
+      valido: false,
+      texto: "Modelo deve ter entre 2 e 100 caracteres.",
+    });
+    expect(validations.modelo("Modelo Válido")).toEqual({
+      valido: true,
+      texto: "",
     });
   });
 });
