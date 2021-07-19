@@ -62,14 +62,4 @@ describe("VehicleForm page", () => {
       value: 40000,
     });
   });
-
-  it("should apply year range validation on blur", () => {
-    render(<VehicleForm brandOptions={brandOptions} />);
-    const yearField = screen.getByLabelText(/ano/i);
-    fireEvent.change(yearField, {
-      target: { value: 1890 },
-    });
-    fireEvent.blur(yearField);
-    expect(Number(yearField.value)).toBe(1900);
-  });
 });

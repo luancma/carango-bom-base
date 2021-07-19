@@ -1,31 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputText from "../InputText";
 import InputNumber from "../InputNumber";
 import InputCurrency from "../InputCurrency";
 import InputSelect from "../InputSelect";
 import { Box, Button } from "@material-ui/core";
 import PropTypes from "prop-types";
+import useErros from "hooks/useErros";
 
-function VehicleForm({ onSubmit, onCancel, brandOptions }) {
+function VehicleForm({ onSubmit, onCancel, brandOptions, existingVehicle }) {
   const [brand, setBrand] = useState("");
   const [model, setModel] = useState("");
   const [year, setYear] = useState(2021);
   const [value, setValue] = useState(0);
   const [minYear, maxYear] = [1900, 2022];
+
+  const validations = {
+    modelo: input => {
+      const valido = input && input.length >= 3 && input.length <= 100;
+      return {
+        valido,
+        texto: valido ? "" : "Modelo deve ter entre 3 e 100 caracteres.",
+      };
+    },
+    ano: input => {
+      const valido = input && input >= minYear && input <= maxYear;
+      return {
+        valido,
+        texto: valido ? "" : `Ano deve estar entre ${minYear} e ${maxYear}`,
+      };
+    },
+  };
+  const [errors, validateFields, canSubmit] = useErros(validations);
+
+  useEffect(() => {
+    if (existingVehicle) {
+      setBrand(existingVehicle.brand);
+      setModel(existingVehicle.model);
+      setYear(existingVehicle.year);
+      setValue(existingVehicle.value);
+    }
+  }, [existingVehicle]);
+
   const handleSubmit = event => {
     event.preventDefault();
-    const vehicle = { brand, model, year, value };
-    onSubmit(vehicle);
-  };
-  const checkYearRange = event => {
-    let formYear = event.target.value;
-    if (formYear < minYear) {
-      formYear = minYear;
-    } else if (formYear > maxYear) {
-      formYear = maxYear;
+    if (canSubmit()) {
+      const vehicle = { brand, model, year, value };
+      onSubmit(vehicle);
     }
-    setYear(formYear);
   };
+
   return (
     <form name="vehicle-form" onSubmit={handleSubmit}>
       <InputSelect
@@ -38,24 +61,31 @@ function VehicleForm({ onSubmit, onCancel, brandOptions }) {
       />
       <InputText
         label="Modelo"
+        name="modelo"
         id="modelo"
         value={model}
         onChange={setModel}
         fullWidth
         required
         margin="normal"
+        error={!errors.modelo.valido}
+        helperText={errors.modelo.texto}
+        onBlur={validateFields}
       />
       <InputNumber
         label="Ano"
+        name="ano"
         id="ano"
         value={year}
         onChange={setYear}
-        onBlur={checkYearRange}
         min={minYear}
         max={maxYear}
         fullWidth
         required
         margin="normal"
+        error={!errors.ano.valido}
+        helperText={errors.ano.texto}
+        onBlur={validateFields}
       />
       <InputCurrency
         label="Valor"
@@ -71,7 +101,7 @@ function VehicleForm({ onSubmit, onCancel, brandOptions }) {
       <Box paddingTop={1} display="flex" justifyContent="flex-end">
         <Box mr={1}>
           <Button variant="contained" color="primary" type="submit">
-            Cadastrar
+            {existingVehicle ? "Salvar" : "Cadastrar"}
           </Button>
         </Box>
         <Box>

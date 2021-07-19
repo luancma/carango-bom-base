@@ -1,20 +1,22 @@
-import { screen, render } from "@testing-library/react";
-import { createMemoryHistory } from "history";
-import { Router } from "react-router-dom";
+import { screen } from "@testing-library/react";
 import App from "../App";
+import React from "react";
+import { renderWithRouter } from "./test-utils";
 
-describe("Testando aaa", () => {
-  it("Shoud render the app component", () => {
-    const history = createMemoryHistory();
-
-    render(
-      <Router history={history}>
-        <App />
-      </Router>
-    );
-
-    const element = screen.getByTestId("test");
-
+describe("App tests", () => {
+  it("shoud render the app component", () => {
+    renderWithRouter(<App />);
+    const element = screen.getByTestId("main");
     expect(element).toBeInTheDocument();
+  });
+
+  it("should render vehicle form after navigating to /vehicle-new", () => {
+    renderWithRouter(<App />, { route: "/vehicle-new" });
+    expect(screen.getByRole("form")).toBeInTheDocument();
+  });
+
+  it("should render vehicle form after navigating to /vehicle-edit/:id", () => {
+    renderWithRouter(<App />, { route: "/vehicle-edit/1" });
+    expect(screen.getByRole("form")).toBeInTheDocument();
   });
 });

@@ -1,7 +1,15 @@
 import React from "react";
 import { Select, FormControl, InputLabel } from "@material-ui/core";
 
-const InputSelect = ({ onSelect, value, label, itemsSelect, id, ...props }) => {
+const InputSelect = ({
+  onSelect,
+  value,
+  label,
+  itemsSelect,
+  id,
+  placeholder,
+  ...props
+}) => {
   const handlerOnChange = event => {
     onSelect(event.target.value);
   };
@@ -19,8 +27,11 @@ const InputSelect = ({ onSelect, value, label, itemsSelect, id, ...props }) => {
         }}
         {...props}
       >
-        {itemsSelect.map((item, i) => (
-          <option key={item.name + i} value={item.value}>
+        <option value="" disabled>
+          {placeholder || "Selecione uma opção"}
+        </option>
+        {itemsSelect.map(item => (
+          <option key={item.name} value={item.value}>
             {item.name}
           </option>
         ))}
