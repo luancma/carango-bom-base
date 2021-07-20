@@ -46,7 +46,7 @@ function HeaderAndSidebar() {
     <>
       <AppBar position="fixed">
         <Toolbar>
-          <IconButton color="inherit" onClick={toggleSidebar}>
+          <IconButton color="inherit" onClick={toggleSidebar} aria-label="menu">
             <Menu />
           </IconButton>
           <Typography variant="h6" component="h1">
@@ -61,12 +61,12 @@ function HeaderAndSidebar() {
         onClick={toggleSidebar}
       >
         <div className={classes.drawerHeader}>
-          <IconButton>
+          <IconButton aria-label="close menu">
             <ChevronLeft></ChevronLeft>
           </IconButton>
         </div>
         <Divider />
-        <List>
+        <List role="navigation">
           {routeTitles
             .filter(route => route.showInSidebar)
             .map(route => {
