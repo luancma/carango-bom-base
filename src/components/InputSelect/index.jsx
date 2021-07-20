@@ -1,26 +1,37 @@
 import React from "react";
 import { Select, FormControl, InputLabel } from "@material-ui/core";
 
-const InputSelect = ({ onSelect, value, label, itemsSelect, ...props }) => {
-  const handlerOnChange = (event) => {
+const InputSelect = ({
+  onSelect,
+  value,
+  label,
+  itemsSelect,
+  id,
+  placeholder,
+  ...props
+}) => {
+  const handlerOnChange = event => {
     onSelect(event.target.value);
   };
   return (
     <FormControl fullWidth variant="outlined">
-      <InputLabel htmlFor="demo-simple-select-label">{label}</InputLabel>
+      <InputLabel htmlFor={id}>{label}</InputLabel>
       <Select
         native
         label={label}
         value={value}
         onChange={handlerOnChange}
         inputProps={{
-          id: "demo-simple-select-label",
+          id: id,
           "data-testid": "inputSelect-test",
         }}
         {...props}
       >
-        {itemsSelect.map((item, i) => (
-          <option key={item.name + i} value={item.name}>
+        <option value="" disabled>
+          {placeholder || "Selecione uma opção"}
+        </option>
+        {itemsSelect.map(item => (
+          <option key={item.name} value={item.value}>
             {item.name}
           </option>
         ))}

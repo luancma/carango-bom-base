@@ -44,7 +44,7 @@ function App() {
     <ThemeProvider theme={muiTheme}>
       <div className={classes.root}>
         <CssBaseline />
-        <main data-testid="test" className={classes.content}>
+        <main data-testid="main" className={classes.content}>
           <div className={classes.toolbar} />
           <Container component="article" maxWidth="md">
             <Switch>
@@ -55,6 +55,9 @@ function App() {
                 <CadastroMarca></CadastroMarca>
               </Route>
               <Route path="/vehicle-new">
+                <RegisterVehicle />
+              </Route>
+              <Route path="/vehicle-edit/:id">
                 <RegisterVehicle />
               </Route>
               <Route path="/">
