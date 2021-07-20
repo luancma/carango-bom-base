@@ -8,31 +8,31 @@ const useVehicle = ({ size = 10 }) => {
   const [loading, setLoading] = React.useState(false);
 
   const fetchVehicles = React.useCallback(
-    async (page) => {
+    async page => {
       setLoading(true);
       try {
         const { content = [], total = 0 } = await VehicleService.getVehicles(
           page,
-          size
+          size,
         );
         setVehicles(content);
         setVehiclesTotal(total);
       } catch (e) {
-        // TODO: error notification
+        console.error(e);
       } finally {
         setLoading(false);
       }
     },
-    [size]
+    [size],
   );
 
-  const deleteVehicleById = async (id) => {
+  const deleteVehicleById = async id => {
     setLoading(true);
     try {
       await VehicleService.deleteVehicleById(id);
       await fetchVehicles(0);
     } catch (e) {
-      // TODO: error notification
+      console.error(e);
     } finally {
       setLoading(false);
     }
