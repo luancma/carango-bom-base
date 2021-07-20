@@ -29,7 +29,9 @@ function ListagemMarcas() {
   const history = useHistory();
 
   function alterar() {
-    history.push("/alteracao-marca/" + marcaSelecionada.id);
+    if (marcaSelecionada) {
+      history.push("/alteracao-marca/" + marcaSelecionada.id);
+    }
   }
 
   function excluir() {
@@ -44,7 +46,7 @@ function ListagemMarcas() {
   useEffect(() => carregarMarcas(), []);
 
   function carregarMarcas() {
-    MarcaService.listar().then((dados) => setMarcas(dados));
+    MarcaService.listar().then(dados => setMarcas(dados));
   }
 
   return (
@@ -52,9 +54,7 @@ function ListagemMarcas() {
       <DataGrid
         rows={marcas}
         columns={colunas}
-        onRowSelected={(gridSelection) =>
-          setMarcaSelecionada(gridSelection.data)
-        }
+        onRowSelected={gridSelection => setMarcaSelecionada(gridSelection.data)}
       />
 
       <div className={classes.actionsToolbar}>
