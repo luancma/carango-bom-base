@@ -7,7 +7,8 @@ import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import CadastroMarca from "./pages/CadastroMarca";
 import ListagemMarcas from "./pages/ListagemMarcas";
-import ListVehicle from 'pages/ListVehicle';
+import RegisterVehicle from "./pages/RegisterVehicle";
+import ListVehicle from "pages/ListVehicle";
 
 const muiTheme = createMuiTheme(
   {
@@ -17,10 +18,10 @@ const muiTheme = createMuiTheme(
       },
     },
   },
-  ptBR
+  ptBR,
 );
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
   },
@@ -44,7 +45,7 @@ function App() {
     <ThemeProvider theme={muiTheme}>
       <div className={classes.root}>
         <CssBaseline />
-        <main data-testid="test" className={classes.content}>
+        <main data-testid="main" className={classes.content}>
           <div className={classes.toolbar} />
           <Container component="article" maxWidth="md">
             <Switch>
@@ -53,6 +54,12 @@ function App() {
               </Route>
               <Route path="/alteracao-marca/:id">
                 <CadastroMarca></CadastroMarca>
+              </Route>
+              <Route path="/vehicle-new">
+                <RegisterVehicle />
+              </Route>
+              <Route path="/vehicle-edit/:id">
+                <RegisterVehicle />
               </Route>
               <Route path="/vehicles">
                 <ListVehicle />
