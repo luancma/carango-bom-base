@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React from "react";
 
 import IconButton from "@material-ui/core/IconButton";
@@ -13,7 +14,7 @@ class VehicleUtil {
       {
         field: "brand",
         headerName: "Marca",
-        valueGetter: (params) => {
+        valueGetter: params => {
           return params.row.brand.name;
         },
         flex: 1,
@@ -31,7 +32,7 @@ class VehicleUtil {
       {
         field: "price",
         headerName: "Valor",
-        valueFormatter: (params) =>
+        valueFormatter: params =>
           `R$ ${CurrencyUtil.formatCurrencyWithDots(params.row.price)}`,
         flex: 1,
       },
@@ -49,7 +50,7 @@ class VehicleUtil {
               <Tooltip title="Remover">
                 <IconButton
                   aria-label="remover"
-                  onClick={(evt) => onDelete(evt, id)}
+                  onClick={evt => onDelete(evt, id)}
                 >
                   <DeleteIcon />
                 </IconButton>

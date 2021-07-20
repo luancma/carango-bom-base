@@ -9,6 +9,8 @@ import CadastroMarca from "./pages/CadastroMarca";
 import ListagemMarcas from "./pages/ListagemMarcas";
 import RegisterVehicle from "./pages/RegisterVehicle";
 import ListVehicle from "pages/ListVehicle";
+import HeaderAndSidebar from "components/HeaderAndSidebar";
+import { paths } from "components/HeaderAndSidebar/paths";
 
 const muiTheme = createMuiTheme(
   {
@@ -45,26 +47,27 @@ function App() {
     <ThemeProvider theme={muiTheme}>
       <div className={classes.root}>
         <CssBaseline />
+        <HeaderAndSidebar />
         <main data-testid="main" className={classes.content}>
           <div className={classes.toolbar} />
           <Container component="article" maxWidth="md">
             <Switch>
-              <Route path="/cadastro-marca">
+              <Route path={paths.brandCreate}>
                 <CadastroMarca></CadastroMarca>
               </Route>
-              <Route path="/alteracao-marca/:id">
+              <Route path={`${paths.brandEdit}/:id`}>
                 <CadastroMarca></CadastroMarca>
               </Route>
-              <Route path="/vehicle-new">
+              <Route path={paths.vehicleCreate}>
                 <RegisterVehicle />
               </Route>
-              <Route path="/vehicle-edit/:id">
+              <Route path={`${paths.vehicleEdit}/:id`}>
                 <RegisterVehicle />
               </Route>
               <Route path="/vehicles">
                 <ListVehicle />
               </Route>
-              <Route path="/">
+              <Route path={paths.home}>
                 <ListagemMarcas></ListagemMarcas>
               </Route>
             </Switch>
