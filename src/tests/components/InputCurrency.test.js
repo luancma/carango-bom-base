@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import InputCurrency, { parseEventValueToNumberIfValueExist } from 'components/InputCurrency'
+import InputCurrency from 'components/InputCurrency'
 
 describe('InputCurrency component', () => {
   it('should display the label passed as prop', () => {

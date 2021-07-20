@@ -8,6 +8,7 @@ import "./App.css";
 import CadastroMarca from "./pages/CadastroMarca";
 import ListagemMarcas from "./pages/ListagemMarcas";
 import RegisterVehicle from "./pages/RegisterVehicle";
+import ListVehicle from "pages/ListVehicle";
 import HeaderAndSidebar from "components/HeaderAndSidebar";
 import { paths } from "components/HeaderAndSidebar/paths";
 
@@ -62,6 +63,9 @@ function App() {
               </Route>
               <Route path={`${paths.vehicleEdit}/:id`}>
                 <RegisterVehicle />
+              </Route>
+              <Route path="/vehicles">
+                <ListVehicle />
               </Route>
               <Route path={paths.home}>
                 <ListagemMarcas></ListagemMarcas>
