@@ -51,19 +51,19 @@ function App() {
           <div className={classes.toolbar} />
           <Container component="article" maxWidth="md">
             <Switch>
-              <Route path="/cadastro-marca">
+              <Route path={paths.brandCreate}>
                 <CadastroMarca></CadastroMarca>
               </Route>
-              <Route path="/alteracao-marca/:id">
+              <Route path={`${paths.brandEdit}/:id`}>
                 <CadastroMarca></CadastroMarca>
               </Route>
-              <Route path="/vehicle-new">
+              <Route path={paths.vehicleCreate}>
                 <RegisterVehicle />
               </Route>
-              <Route path="/vehicle-edit/:id">
+              <Route path={`${paths.vehicleEdit}/:id`}>
                 <RegisterVehicle />
               </Route>
-              <Route path="/">
+              <Route path={paths.home}>
                 <ListagemMarcas></ListagemMarcas>
               </Route>
             </Switch>
