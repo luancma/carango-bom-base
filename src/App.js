@@ -8,6 +8,8 @@ import "./App.css";
 import CadastroMarca from "./pages/CadastroMarca";
 import ListagemMarcas from "./pages/ListagemMarcas";
 import RegisterVehicle from "./pages/RegisterVehicle";
+import HeaderAndSidebar from "components/HeaderAndSidebar";
+import { paths } from "components/HeaderAndSidebar/paths";
 
 const muiTheme = createMuiTheme(
   {
@@ -44,6 +46,7 @@ function App() {
     <ThemeProvider theme={muiTheme}>
       <div className={classes.root}>
         <CssBaseline />
+        <HeaderAndSidebar />
         <main data-testid="main" className={classes.content}>
           <div className={classes.toolbar} />
           <Container component="article" maxWidth="md">
