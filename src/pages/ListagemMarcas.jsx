@@ -29,9 +29,7 @@ function ListagemMarcas() {
   const history = useHistory();
 
   function alterar() {
-    if (marcaSelecionada) {
-      history.push("/alteracao-marca/" + marcaSelecionada.id);
-    }
+    history.push("/alteracao-marca/" + marcaSelecionada?.id);
   }
 
   function excluir() {
