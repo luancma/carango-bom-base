@@ -1,6 +1,6 @@
 export const validations = {
   modelo: input => {
-    const valido = input && input.length >= 3 && input.length <= 100;
+    const valido = input && input.length >= 2 && input.length <= 100;
     return {
       valido,
       texto: valido ? "" : "Modelo deve ter entre 2 e 100 caracteres.",

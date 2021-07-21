@@ -12,12 +12,21 @@ describe("App tests", () => {
 
   it("should render vehicle form after navigating to /vehicle-new", () => {
     renderWithRouter(<App />, { route: "/vehicle-new" });
-    expect(screen.getByRole("form")).toBeInTheDocument();
+    expect(
+      screen.getByRole("form", { name: "vehicle form" }),
+    ).toBeInTheDocument();
   });
 
   it("should render vehicle form after navigating to /vehicle-edit/:id", () => {
     renderWithRouter(<App />, { route: "/vehicle-edit/1" });
-    expect(screen.getByRole("form")).toBeInTheDocument();
+    expect(
+      screen.getByRole("form", { name: "vehicle form" }),
+    ).toBeInTheDocument();
+  });
+
+  it("should render user form after navigating to /user-new", () => {
+    renderWithRouter(<App />, { route: "/user-new" });
+    expect(screen.getByRole("form", { name: "user form" })).toBeInTheDocument();
   });
 
   it("should navigate to route after clicking on sidebar item", () => {

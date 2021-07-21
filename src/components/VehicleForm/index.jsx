@@ -3,10 +3,9 @@ import InputText from "../InputText";
 import InputNumber from "../InputNumber";
 import InputCurrency from "../InputCurrency";
 import InputSelect from "../InputSelect";
-import { Box, Button } from "@material-ui/core";
-import PropTypes from "prop-types";
 import useErros from "hooks/useErros";
 import { validations, minYear, maxYear } from "./validations";
+import FormActions from "components/FormActions";
 
 function VehicleForm({ onSubmit, onCancel, brandOptions, existingVehicle }) {
   const [brand, setBrand] = useState("");
@@ -34,7 +33,7 @@ function VehicleForm({ onSubmit, onCancel, brandOptions, existingVehicle }) {
   };
 
   return (
-    <form name="vehicle-form" onSubmit={handleSubmit}>
+    <form name="vehicle-form" aria-label="vehicle form" onSubmit={handleSubmit}>
       <InputSelect
         value={brand}
         onSelect={setBrand}
@@ -82,25 +81,9 @@ function VehicleForm({ onSubmit, onCancel, brandOptions, existingVehicle }) {
         required
         margin="normal"
       />
-      <Box paddingTop={1} display="flex" justifyContent="flex-end">
-        <Box mr={1}>
-          <Button variant="contained" color="primary" type="submit">
-            {existingVehicle ? "Salvar" : "Cadastrar"}
-          </Button>
-        </Box>
-        <Box>
-          <Button variant="contained" color="secondary" onClick={onCancel}>
-            Cancelar
-          </Button>
-        </Box>
-      </Box>
+      <FormActions isEdit={!!existingVehicle} onCancel={onCancel} />
     </form>
   );
 }
-
-VehicleForm.propTypes = {
-  onSubmit: PropTypes.func,
-  onCancel: PropTypes.func,
-};
 
 export default VehicleForm;
