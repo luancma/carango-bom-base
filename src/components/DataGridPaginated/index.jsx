@@ -9,9 +9,9 @@ const DataGridPaginated = ({
   loading,
   items,
   columns,
-  defaultPage = 0,
+  defaultPage,
 }) => {
-  const [page, setPage] = useState(defaultPage);
+  const [page, setPage] = useState(0);
 
   const handleRowClick = param => {
     const {
@@ -28,7 +28,7 @@ const DataGridPaginated = ({
   };
 
   useEffect(() => {
-    setPage(defaultPage);
+    setPage(defaultPage.value);
   }, [defaultPage]);
 
   useEffect(() => {

@@ -11,12 +11,10 @@ const useVehicle = ({ size = 10 }) => {
     async page => {
       setLoading(true);
       try {
-        const { content = [], total = 0 } = await VehicleService.getVehicles(
-          page,
-          size,
-        );
+        const { content = [], totalElements = 0 } =
+          await VehicleService.getVehicles(page, size);
+        setVehiclesTotal(totalElements);
         setVehicles(content);
-        setVehiclesTotal(total);
       } catch (e) {
         console.error(e);
       } finally {

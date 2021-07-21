@@ -10,8 +10,9 @@ import ConfirmDialog from "../components/ConfirmDialog";
 
 const ListVehicle = () => {
   const vehiclesPerPage = 10;
-  const [defaultPage, setDefaultPage] = useState(0);
+  const [defaultPage, setDefaultPage] = useState({ value: 0 });
   const [idToDelete, setIdToDelete] = useState("");
+
   const { vehicles, loading, fetchVehicles, vehiclesTotal, deleteVehicleById } =
     useVehicle({
       size: vehiclesPerPage,
@@ -29,7 +30,7 @@ const ListVehicle = () => {
 
   const handleDeleteItem = async () => {
     await deleteVehicleById(idToDelete);
-    setDefaultPage(0);
+    setDefaultPage({ value: 0 });
     setShowConfirm(false);
   };
 
