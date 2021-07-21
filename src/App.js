@@ -12,6 +12,7 @@ import ListVehicle from "pages/ListVehicle";
 import HeaderAndSidebar from "components/HeaderAndSidebar";
 import { paths } from "components/HeaderAndSidebar/paths";
 import RegisterUser from "pages/RegisterUser";
+import ListUser from "pages/ListUser";
 
 const muiTheme = createMuiTheme(
   {
@@ -70,6 +71,9 @@ function App() {
               </Route>
               <Route path={paths.userCreate}>
                 <RegisterUser />
+              </Route>
+              <Route path={paths.userList}>
+                <ListUser />
               </Route>
               <Route path={paths.home}>
                 <ListagemMarcas></ListagemMarcas>

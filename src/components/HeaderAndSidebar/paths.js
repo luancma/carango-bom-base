@@ -6,6 +6,7 @@ export const paths = {
   brandCreate: "/cadastro-marca",
   brandEdit: "/alteracao-marca",
   userCreate: "/user-new",
+  userList: "/users",
 };
 
 export const routeTitles = [
@@ -19,5 +20,6 @@ export const routeTitles = [
   { path: paths.vehicleEdit, title: "Editar Veículo", showInSidebar: false },
   { path: paths.brandCreate, title: "Cadastrar Marca", showInSidebar: true },
   { path: paths.brandEdit, title: "Editar Marca", showInSidebar: false },
+  { path: paths.userList, title: "Usuários", showInSidebar: true },
   { path: paths.userCreate, title: "Cadastrar Usuário", showInSidebar: true },
 ];

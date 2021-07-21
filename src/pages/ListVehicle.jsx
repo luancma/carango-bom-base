@@ -43,7 +43,7 @@ const ListVehicle = () => {
 
   return (
     <>
-      <div style={{ height: 300, width: "100%" }}>
+      <div>
         <DataGridPaginated
           defaultPage={defaultPage}
           loading={loading}
