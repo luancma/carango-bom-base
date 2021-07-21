@@ -48,6 +48,7 @@ const DataGridPaginated = ({
       onRowClick={handleRowClick}
       rows={items}
       columns={columns}
+      columnBuffer={columns.length}
     />
   );
 };
