@@ -37,7 +37,7 @@ function HeaderAndSidebar() {
   useEffect(() => {
     const firstPartOfPathMatcher = /^\/[^/]*/g; // e.g.: "/vehicle-edit/id" -> "/vehicle-edit"
     const [mainPath] = location.pathname.match(firstPartOfPathMatcher);
-    setTitle(routeTitles.find(route => route.path === mainPath).title);
+    setTitle(routeTitles.find(route => route.path === mainPath)?.title);
   }, [location.pathname]);
 
   const toggleSidebar = () => setShowSidebar(!showSidebar);
