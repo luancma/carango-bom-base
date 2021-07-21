@@ -1,12 +1,9 @@
 /* eslint-disable react/display-name */
 import React from "react";
 
-import IconButton from "@material-ui/core/IconButton";
-import Tooltip from "@material-ui/core/Tooltip";
+import DeleteItem from "components/DeleteItem";
 
 import CurrencyUtil from "util/CurrencyUtil";
-
-import { ReactComponent as DeleteIcon } from "assets/img/delete.svg";
 
 class VehicleUtil {
   static getVehicleColumns({ onDelete }) {
@@ -44,20 +41,9 @@ class VehicleUtil {
         resizable: false,
         cellClassName: "",
         disableColumnMenu: true,
-        renderCell: ({ row: { id } }) => {
-          return (
-            <div>
-              <Tooltip title="Remover">
-                <IconButton
-                  aria-label="remover"
-                  onClick={evt => onDelete(evt, id)}
-                >
-                  <DeleteIcon />
-                </IconButton>
-              </Tooltip>
-            </div>
-          );
-        },
+        renderCell: ({ row: { id } }) => (
+          <DeleteItem id={id} onDelete={onDelete} />
+        ),
       },
     ];
   }

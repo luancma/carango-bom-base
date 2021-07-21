@@ -1,6 +1,5 @@
 import React from "react";
-import { IconButton, Tooltip } from "@material-ui/core";
-import { ReactComponent as DeleteIcon } from "assets/img/delete.svg";
+import DeleteItem from "../components/DeleteItem";
 
 class UserUtil {
   static getUserColumns({ onDelete }) {
@@ -18,20 +17,10 @@ class UserUtil {
         resizable: false,
         cellClassName: "",
         disableColumnMenu: true,
-        renderCell: function DeleteItem({ row: { id } }) {
-          return (
-            <div>
-              <Tooltip title="Remover">
-                <IconButton
-                  aria-label="remover"
-                  onClick={event => onDelete(event, id)}
-                >
-                  <DeleteIcon />
-                </IconButton>
-              </Tooltip>
-            </div>
-          );
-        },
+        // eslint-disable-next-line react/display-name
+        renderCell: ({ row: { id } }) => (
+          <DeleteItem id={id} onDelete={onDelete} />
+        ),
       },
     ];
   }
