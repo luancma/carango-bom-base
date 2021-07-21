@@ -28,7 +28,9 @@ const DataGridPaginated = ({
   };
 
   useEffect(() => {
-    setPage(defaultPage.value);
+    if (defaultPage) {
+      setPage(defaultPage.value);
+    }
   }, [defaultPage]);
 
   useEffect(() => {
