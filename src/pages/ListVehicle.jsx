@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { useHistory } from "react-router";
+
 import DataGridPaginated from "components/DataGridPaginated";
 
 import useVehicle from "hooks/useVehicle";
@@ -9,6 +11,7 @@ import VehicleUtil from "util/VehicleUtil";
 import ConfirmDialog from "../components/ConfirmDialog";
 
 const ListVehicle = () => {
+  const history = useHistory();
   const vehiclesPerPage = 10;
   const [defaultPage, setDefaultPage] = useState({ value: 0 });
   const [idToDelete, setIdToDelete] = useState("");
@@ -25,7 +28,9 @@ const ListVehicle = () => {
   };
 
   const handleItemClick = id => {
-    console.log(`You clicked in vehicle with id ${id}`);
+    if (id) {
+      history.push("/vehicle-edit/" + id);
+    }
   };
 
   const handleDeleteItem = async () => {
