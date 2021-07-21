@@ -1,4 +1,4 @@
-const API_URL = "https://acelera-api-group4.herokuapp.com/";
+const API_URL = "https://backend-acelera.herokuapp.com/";
 
 class UserService {
   static getUsers(page, size) {
