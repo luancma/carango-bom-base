@@ -32,7 +32,7 @@ describe("DataGridPaginated test component", () => {
         items={[]}
         onItemClick={() => {}}
         fetchItems={() => {}}
-      />
+      />,
     );
     expect(screen.getByRole("grid")).toBeInTheDocument();
   });
@@ -46,7 +46,7 @@ describe("DataGridPaginated test component", () => {
         items={rows}
         onItemClick={onRowClick}
         fetchItems={() => {}}
-      />
+      />,
     );
 
     userEvent.click(screen.getByRole("row", { name: /Test/i }));
@@ -63,9 +63,9 @@ describe("DataGridPaginated test component", () => {
         itemsPerPage={10}
         onItemClick={() => {}}
         fetchItems={() => {}}
-      />
+      />,
     );
 
-    // expect(screen.getByText("1-10 of 20")).toBeInTheDocument();
+    expect(screen.getByText(/1-10.*20/)).toBeInTheDocument();
   });
 });

@@ -14,6 +14,7 @@ import { paths } from "components/HeaderAndSidebar/paths";
 import RegisterUser from "pages/RegisterUser";
 import ListUser from "pages/ListUser";
 import NotFound from "./pages/NotFound";
+import Login from "pages/Login";
 
 const muiTheme = createMuiTheme(
   {
@@ -55,6 +56,9 @@ function App() {
           <div className={classes.toolbar} />
           <Container component="article" maxWidth="md">
             <Switch>
+              <Route path="/login">
+                <Login />
+              </Route>
               <Route path={paths.brandCreate}>
                 <CadastroMarca></CadastroMarca>
               </Route>
