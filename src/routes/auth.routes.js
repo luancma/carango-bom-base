@@ -1,5 +1,5 @@
-import CadastroMarca from "../pages/CadastroMarca";
-import ListagemMarcas from "../pages/ListagemMarcas";
+import CadastroMarca from "../pages/Brand/CreateUpdateBrand";
+import ListagemMarcas from "../pages/Brand";
 import ListVehicle from "../pages/ListVehicle";
 import RegisterUser from "../pages/RegisterUser";
 import RegisterVehicle from "../pages/RegisterVehicle";
@@ -7,39 +7,39 @@ import RegisterVehicle from "../pages/RegisterVehicle";
 export const authRoutes = [
   {
     path: "/vehicle",
-    title: "Listagem de Veículos",
+    title: "Veículos",
     component: ListVehicle,
     sidebar: true,
   },
   {
     path: "/vehicle/create",
-    title: "Cadastrar Veículo",
+    title: "Veículo",
     component: RegisterVehicle,
   },
   {
     path: "/vehicle/:id",
-    title: "Editar Veículo",
+    title: "Veículo",
     component: RegisterVehicle,
   },
   {
     path: "/brand",
-    title: "Listagem de Marcas",
+    title: "Marcas",
     component: ListagemMarcas,
     sidebar: true,
   },
   {
     path: "/brand/create",
-    title: "Cadastro de Marcas",
+    title: "Marcas",
     component: CadastroMarca,
   },
   {
     path: "/brand/:id",
-    title: "Editar de Marcas",
+    title: "Marcas",
     component: CadastroMarca,
   },
   {
     path: "/user",
-    title: "Cadastro de Usuário",
+    title: "Usuário",
     component: RegisterUser,
   },
 ]

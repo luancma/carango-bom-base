@@ -5,14 +5,8 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
-import CadastroMarca from "./pages/CadastroMarca";
-import ListagemMarcas from "./pages/ListagemMarcas";
-import RegisterVehicle from "./pages/RegisterVehicle";
-import ListVehicle from "pages/ListVehicle";
 import HeaderAndSidebar from "components/HeaderAndSidebar";
-import { paths } from "components/HeaderAndSidebar/paths";
-import RegisterUser from "pages/RegisterUser";
-import { RouteComponent } from "routes/RouteComponent";
+
 import { authRoutes } from "routes/auth.routes";
 
 const muiTheme = createMuiTheme(
@@ -57,31 +51,9 @@ function App() {
             <Switch>
               {
                 authRoutes.map((route, index) => (
-                  <Route key={index} path={route.path} component={route.component} />
+                  <Route key={index} exact path={route.path} component={route.component} />
                 ))
               }
-              {/* <Route path={paths.brandCreate}>
-                <CadastroMarca></CadastroMarca>
-              </Route>
-              <Route path={`${paths.brandEdit}/:id`}>
-                <CadastroMarca></CadastroMarca>
-              </Route>
-              <Route path={paths.vehicleCreate}>
-                <RegisterVehicle />
-              </Route>
-              <Route path={`${paths.vehicleEdit}/:id`}>
-                <RegisterVehicle />
-              </Route>
-              <Route path={paths.vehicleList}>
-                <ListVehicle />
-              </Route>
-              <Route path={paths.userCreate}>
-                <RegisterUser />
-              </Route>
-              <Route path={paths.home}>
-                <ListagemMarcas></ListagemMarcas>
-              </Route> */}
-              {/* <RouteComponent routes={authRoutes} /> */}
             </Switch>
           </Container>
         </main>

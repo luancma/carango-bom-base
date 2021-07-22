@@ -1,16 +1,16 @@
 export const validations = {
   modelo: input => {
-    const valido = input && input.length >= 2 && input.length <= 100;
+    const isValid = input && input.length >= 2 && input.length <= 100;
     return {
-      valido,
-      texto: valido ? "" : "Modelo deve ter entre 2 e 100 caracteres.",
+      isValid,
+      text: isValid ? "" : "Modelo deve ter entre 2 e 100 caracteres.",
     };
   },
   ano: input => {
-    const valido = input && input >= minYear && input <= maxYear;
+    const isValid = input && input >= minYear && input <= maxYear;
     return {
-      valido,
-      texto: valido ? "" : `Ano deve estar entre ${minYear} e ${maxYear}.`,
+      isValid,
+      text: isValid ? "" : `Ano deve estar entre ${minYear} e ${maxYear}.`,
     };
   },
 };

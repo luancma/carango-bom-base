@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import InputText from "../InputText";
-import useErros from "hooks/useErros";
+import useFormErrors from "hooks/useFormErrors";
 import { validations, validateConfirmPassword } from "./validations";
 import FormActions from "components/FormActions";
 
@@ -10,7 +10,7 @@ function UserForm({ onSubmit, onCancel }) {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmError, setConfirmError] = useState({ valido: true, texto: "" });
 
-  const [errors, validateFields, canSubmit] = useErros(validations);
+  const [errors, validateFields, canSubmit] = useFormErrors(validations);
 
   const handleSubmit = event => {
     event.preventDefault();

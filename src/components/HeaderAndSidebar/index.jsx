@@ -13,7 +13,6 @@ import {
 } from "@material-ui/core";
 import { ChevronLeft, Menu } from "@material-ui/icons";
 import { useLocation } from "react-router";
-import { routeTitles } from "./paths";
 import { Link } from "react-router-dom";
 import { authRoutes } from "routes/auth.routes";
 
@@ -48,7 +47,7 @@ function HeaderAndSidebar() {
           <IconButton color="inherit" onClick={toggleSidebar} aria-label="menu">
             <Menu />
           </IconButton>
-          <Typography variant="h6" component="h1">
+          <Typography className="text-center" variant="h6" component="h1">
             {title}
           </Typography>
         </Toolbar>

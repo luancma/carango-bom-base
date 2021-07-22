@@ -3,7 +3,7 @@ import { DataGrid } from "@material-ui/data-grid";
 import AddIcon from "@material-ui/icons/Add";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import MarcaService from "../services/MarcaService";
+import BrandService from "../../services/BrandService";
 
 const colunas = [{ field: "nome", headerName: "Marca", width: 200 }];
 
@@ -23,17 +23,18 @@ const useStyles = makeStyles(() => ({
 }));
 
 function ListagemMarcas() {
+
   const [marcas, setMarcas] = useState([]);
   const [marcaSelecionada, setMarcaSelecionada] = useState();
   const classes = useStyles();
   const history = useHistory();
 
   function alterar() {
-    history.push("/alteracao-marca/" + marcaSelecionada?.id);
+    history.push("/brand/" + marcaSelecionada?.id);
   }
 
   function excluir() {
-    MarcaService.excluir(marcaSelecionada).then(() => {
+    BrandService.excluir(marcaSelecionada).then(() => {
       setMarcaSelecionada(null);
       carregarMarcas();
     });
@@ -43,8 +44,13 @@ function ListagemMarcas() {
   // eslint-disable-next-line
   useEffect(() => carregarMarcas(), []);
 
-  function carregarMarcas() {
-    MarcaService.listar().then(dados => setMarcas(dados));
+  async function carregarMarcas() {
+    const resp = await BrandService.listar();
+    if (!!resp.content && resp.content.length > 0) {
+      setMarcas(resp.content);
+    } else {
+      setMarcas([]);
+    }
   }
 
   return (
@@ -80,7 +86,7 @@ function ListagemMarcas() {
         color="primary"
         aria-label="add"
         className={classes.fab}
-        onClick={() => history.push("/cadastro-marca")}
+        onClick={() => history.push("/brand/create")}
       >
         <AddIcon />
       </Fab>

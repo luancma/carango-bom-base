@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-
 import DataGridPaginated from "components/DataGridPaginated";
-
 import useVehicle from "hooks/useVehicle";
-
 import VehicleUtil from "util/VehicleUtil";
-
 import ConfirmDialog from "../components/ConfirmDialog";
 
 const ListVehicle = () => {

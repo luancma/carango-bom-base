@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import VehicleForm from "../components/VehicleForm";
 import ConfirmDialog from "../components/ConfirmDialog";
-import MarcaService from "services/MarcaService";
+import BrandService from "services/BrandService";
 import { formatBrands } from "libs/brand";
-// import VeiculoService from "services/VeiculoService";
 
 function RegisterVehicle() {
   const [showConfirm, setShowConfirm] = useState(false);
@@ -19,7 +18,7 @@ function RegisterVehicle() {
 
   useEffect(() => {
     const getBrands = async () => {
-      const options = await MarcaService.listar();
+      const options = await BrandService.listar();
       setBrandOptions(formatBrands(options));
     };
     getBrands();
