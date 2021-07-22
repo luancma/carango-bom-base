@@ -1,5 +1,6 @@
 export const paths = {
   home: "/",
+  login: "/login",
   vehicleCreate: "/vehicle-new",
   vehicleEdit: "/vehicle-edit",
   vehicleList: "/vehicles",
@@ -11,6 +12,7 @@ export const paths = {
 
 export const routeTitles = [
   { path: paths.home, title: "Carango Bom", showInSidebar: false },
+  { path: paths.login, title: "Entrar", showInSidebar: true },
   { path: paths.vehicleList, title: "Veículos", showInSidebar: true },
   {
     path: paths.vehicleCreate,

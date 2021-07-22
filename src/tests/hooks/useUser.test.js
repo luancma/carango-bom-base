@@ -1,6 +1,6 @@
 import { act, renderHook } from "@testing-library/react-hooks";
 
-import userService from "services/UserService";
+import UserService from "services/UserService";
 import useUser from "hooks/useUser";
 
 jest.mock("services/UserService");
@@ -8,7 +8,7 @@ jest.mock("services/UserService");
 describe("useUser hook", () => {
   describe("fetchUsers", () => {
     beforeEach(() => {
-      userService.getUsers.mockResolvedValue({
+      UserService.getUsers.mockResolvedValue({
         content: [
           {
             name: "user1",
@@ -54,8 +54,8 @@ describe("useUser hook", () => {
     });
 
     it("should not throw error when fetch is not resolved by an error", async () => {
-      userService.getUsers.mockRejectedValue(
-        new Error("Error inside userService"),
+      UserService.getUsers.mockRejectedValue(
+        new Error("Error inside UserService"),
       );
       const { result, waitForNextUpdate } = renderHook(() =>
         useUser({ size: 10 }),
