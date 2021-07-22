@@ -15,6 +15,7 @@ import { ChevronLeft, Menu } from "@material-ui/icons";
 import { useLocation } from "react-router";
 import { routeTitles } from "./paths";
 import { Link } from "react-router-dom";
+import { authRoutes } from "routes/auth.routes";
 
 const useStyles = makeStyles(theme => ({
   drawerHeader: {
@@ -28,16 +29,14 @@ const useStyles = makeStyles(theme => ({
 
 function HeaderAndSidebar() {
   const classes = useStyles();
-  const [title, setTitle] = useState(
-    () => routeTitles.find(route => route.path === "/").title,
-  );
+  const [title, setTitle] = useState("");
   const [showSidebar, setShowSidebar] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     const firstPartOfPathMatcher = /^\/[^/]*/g; // e.g.: "/vehicle-edit/id" -> "/vehicle-edit"
     const [mainPath] = location.pathname.match(firstPartOfPathMatcher);
-    setTitle(routeTitles.find(route => route.path === mainPath).title);
+    setTitle(authRoutes.find(route => route.path === mainPath).title);
   }, [location.pathname]);
 
   const toggleSidebar = () => setShowSidebar(!showSidebar);
@@ -67,8 +66,8 @@ function HeaderAndSidebar() {
         </div>
         <Divider />
         <List role="navigation">
-          {routeTitles
-            .filter(route => route.showInSidebar)
+          {authRoutes
+            .filter(route => route.sidebar)
             .map(route => {
               return (
                 <ListItem

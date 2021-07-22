@@ -12,6 +12,8 @@ import ListVehicle from "pages/ListVehicle";
 import HeaderAndSidebar from "components/HeaderAndSidebar";
 import { paths } from "components/HeaderAndSidebar/paths";
 import RegisterUser from "pages/RegisterUser";
+import { RouteComponent } from "routes/RouteComponent";
+import { authRoutes } from "routes/auth.routes";
 
 const muiTheme = createMuiTheme(
   {
@@ -53,7 +55,12 @@ function App() {
           <div className={classes.toolbar} />
           <Container component="article" maxWidth="md">
             <Switch>
-              <Route path={paths.brandCreate}>
+              {
+                authRoutes.map((route, index) => (
+                  <Route key={index} path={route.path} component={route.component} />
+                ))
+              }
+              {/* <Route path={paths.brandCreate}>
                 <CadastroMarca></CadastroMarca>
               </Route>
               <Route path={`${paths.brandEdit}/:id`}>
@@ -73,7 +80,8 @@ function App() {
               </Route>
               <Route path={paths.home}>
                 <ListagemMarcas></ListagemMarcas>
-              </Route>
+              </Route> */}
+              {/* <RouteComponent routes={authRoutes} /> */}
             </Switch>
           </Container>
         </main>

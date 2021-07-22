@@ -34,7 +34,7 @@ function CadastroMarca() {
             MarcaService.consultar(id)
                 .then(m => setMarca(m.nome));
         }
-    }, [id]); // eslint-disable-line
+    }, [id]);
 
     return (
         <form onSubmit={(event) => {
