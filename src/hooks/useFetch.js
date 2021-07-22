@@ -1,25 +1,32 @@
 import { useEffect, useState } from "react";
 
-export const useFetch = url => {
+export const useFetch = ({ url, loadMessage = "Caregando..." }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    setLoading("Carregando...");
+    setLoading(loadMessage);
     setData(null);
     setError(null);
-    
-    fetch(url)
-      .then(response => response.json())
+
+    const url = fetch(url)
       .then(response => {
-        setLoading(false);
-        setData(response)
-      }) 
+        if (validateFetch(response)) {
+          response.json().then(response => {
+            setData(response);
+            setLoading(null);
+          });
+        }
+        throw new Error("Network response was not ok");
+      })
       .catch(error => {
-        console.error(error);
+        setLoading(null);
+        setError("Erro ao buscar os dados");
       });
-  }, [url]);
+
+    const validateFetch = response => response.status === 200;
+  }, [url, loadMessage]);
 
   return { data, loading, error };
 };
