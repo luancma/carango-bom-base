@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="/Users/luan.carlos/projects/acelera/carango-bom-base/src/tests/pages/RegisterUser.test.js">
+    <testCase name="RegisterUser tests should render form and buttons" duration="1359"/>
+    <testCase name="RegisterUser tests should show confirm dialog after clicking cancel" duration="715"/>
+    <testCase name="RegisterUser tests should close confirm dialog" duration="1299"/>
+  </file>
+  <file path="/Users/luan.carlos/projects/acelera/carango-bom-base/src/tests/pages/RegisterVehicle.test.js">
+    <testCase name="RegisterVehicle tests should render form and buttons" duration="1681"/>
+    <testCase name="RegisterVehicle tests should show confirm dialog after clicking cancel" duration="818"/>
+    <testCase name="RegisterVehicle tests should close confirm dialog" duration="1497"/>
+  </file>
+  <file path="/Users/luan.carlos/projects/acelera/carango-bom-base/src/tests/components/DataGridPaginated.test.js">
+    <testCase name="DataGridPaginated test component should render the grid component" duration="1254"/>
+    <testCase name="DataGridPaginated test component should call onRowClick after click in the grid table row" duration="1082"/>
+    <testCase name="DataGridPaginated test component should display itemsPerPage with the total items" duration="847"/>
+  </file>
+  <file path="/Users/luan.carlos/projects/acelera/carango-bom-base/src/tests/pages/ListVehicle.test.js">
+    <testCase name="ListVehicle component should render the list" duration="1901"/>
+    <testCase name="ListVehicle component should show confirm delete dialog" duration="2158"/>
+  </file>
+  <file path="/Users/luan.carlos/projects/acelera/carango-bom-base/src/tests/pages/ListUser.test.js">
+    <testCase name="ListUser component should render the list" duration="1058"/>
+  </file>
+  <file path="/Users/luan.carlos/projects/acelera/carango-bom-base/src/tests/components/ConfirmDialog.test.js">
+    <testCase name="ConfirmDialog tests should render dialog" duration="297"/>
+    <testCase name="ConfirmDialog tests should show dialog title" duration="162"/>
+    <testCase name="ConfirmDialog tests should call onClose after clicking close button" duration="348"/>
+    <testCase name="ConfirmDialog tests should call onConfirm after clicking confirm button" duration="299"/>
+  </file>
+  <file path="/Users/luan.carlos/projects/acelera/carango-bom-base/src/tests/components/DeleteItem.test.js">
+    <testCase name="DeleteItem tests should render delete button" duration="212"/>
+    <testCase name="DeleteItem tests should call on delete function when clicked" duration="65"/>
+  </file>
+  <file path="/Users/luan.carlos/projects/acelera/carango-bom-base/src/tests/util/VehicleUtil.test.js">
+    <testCase name="VehicleUtil tests getVehicleColumns should return array with length more than zero when call the method" duration="0"/>
+    <testCase name="VehicleUtil tests getVehicleColumns should return array with columns brand, price, model, year and actions (represented as empty column)" duration="1"/>
+  </file>
+  <file path="/Users/luan.carlos/projects/acelera/carango-bom-base/src/tests/components/InputNumber.test.js">
+    <testCase name="InputNumber test should display value passed as prop" duration="88"/>
+    <testCase name="InputNumber test should call on change function" duration="101"/>
+    <testCase name="InputNumber test should display label" duration="63"/>
+    <testCase name="InputNumber test should have type number" duration="46"/>
+  </file>
+  <file path="/Users/luan.carlos/projects/acelera/carango-bom-base/src/tests/components/UserForm.test.js">
+    <testCase name="UserForm page should show form with all fields" duration="1307"/>
+    <testCase name="UserForm page should call onSubmit function when submit button is clicked" duration="412"/>
+    <testCase name="UserForm page should call onCancel function when cancel button is clicked" duration="460"/>
+    <testCase name="UserForm page should return the correct object on submit" duration="567"/>
+    <testCase name="UserForm page should validate username and password" duration="1"/>
+  </file>
+  <file path="/Users/luan.carlos/projects/acelera/carango-bom-base/src/tests/util/UserUtil.test.js">
+    <testCase name="UserUtil tests getUserColumns should return array with length more than zero when call the method" duration="0"/>
+    <testCase name="UserUtil tests getUserColumns should return array with columns name and actions (represented as empty column)" duration="2"/>
+  </file>
+  <file path="/Users/luan.carlos/projects/acelera/carango-bom-base/src/tests/components/InputCurrency.test.js">
+    <testCase name="InputCurrency component should display the label passed as prop" duration="124"/>
+    <testCase name="InputCurrency component should display the amount when pass value as prop" duration="54"/>
+    <testCase name="InputCurrency component should not display input currency when passing less than minimum value as prop" duration="8"/>
+    <testCase name="InputCurrency component should call the onChange when value change" duration="108"/>
+    <testCase name="InputCurrency component should not display negative values when minimum value is 0" duration="108"/>
+    <testCase name="InputCurrency component should display the currency symbol when passing the currency symbol and value as integer in props" duration="65"/>
+    <testCase name="InputCurrency component should have focus on render when passing focused props" duration="55"/>
+    <testCase name="InputCurrency component should not have focus on render when not passing focused props" duration="53"/>
+    <testCase name="InputCurrency component should not display currency when passing value as empty string on props" duration="84"/>
+    <testCase name="InputCurrency component should not display currency when passing value undefined as props" duration="31"/>
+    <testCase name="InputCurrency component should not display input when passing value NaN as props" duration="11"/>
+    <testCase name="InputCurrency component should display error when passing error object with message inside props" duration="71"/>
+  </file>
+  <file path="/Users/luan.carlos/projects/acelera/carango-bom-base/src/tests/hooks/useVehicle.test.js">
+    <testCase name="useVehicle hook fetchVehicles should load the vehicles" duration="6"/>
+    <testCase name="useVehicle hook fetchVehicles should set loading to true when the fetch is not resolved yet" duration="118"/>
+    <testCase name="useVehicle hook fetchVehicles should set loading to false when the fetch is resolved" duration="8"/>
+    <testCase name="useVehicle hook fetchVehicles should not throw error when fetch is not resolved by an error" duration="39"/>
+  </file>
+  <file path="/Users/luan.carlos/projects/acelera/carango-bom-base/src/tests/hooks/useUser.test.js">
+    <testCase name="useUser hook fetchUsers should load the users" duration="84"/>
+    <testCase name="useUser hook fetchUsers should set loading to true when the fetch is not resolved yet" duration="74"/>
+    <testCase name="useUser hook fetchUsers should set loading to false when the fetch is resolved" duration="9"/>
+    <testCase name="useUser hook fetchUsers should not throw error when fetch is not resolved by an error" duration="20"/>
+  </file>
+  <file path="/Users/luan.carlos/projects/acelera/carango-bom-base/src/tests/util/EventParserUtil.test.js">
+    <testCase name="EventParserUtil tests parseEventValueToNumberIfValueExist should not return NaN when event target value is empty" duration="1"/>
+  </file>
+  <file path="/Users/luan.carlos/projects/acelera/carango-bom-base/src/tests/util/CurrencyUtil.test.js">
+    <testCase name="CurrencyUtil tests formatCurrencyWithDots should return 10.000 as string if we pass 10000 as number" duration="1"/>
+  </file>
+  <file path="/Users/luan.carlos/projects/acelera/carango-bom-base/src/tests/libs/brand.test.js">
+    <testCase name="brand lib test should return formatted brands array" duration="3"/>
+  </file>
+  <file path="/Users/luan.carlos/projects/acelera/carango-bom-base/src/tests/components/FormActions.test.js">
+    <testCase name="FormActions tests should render buttons" duration="225"/>
+    <testCase name="FormActions tests should call onCancel after clicking on cancel button" duration="72"/>
+    <testCase name="FormActions tests should change button text if isEdit is true" duration="108"/>
+  </file>
+  <file path="/Users/luan.carlos/projects/acelera/carango-bom-base/src/tests/components/HeaderAndSidebar.test.js">
+    <testCase name="HeaderAndSidebar tests should render app bar title" duration="207"/>
+    <testCase name="HeaderAndSidebar tests should change title according to location" duration="94"/>
+    <testCase name="HeaderAndSidebar tests should show sidebar after clicking on menu" duration="139"/>
+    <testCase name="HeaderAndSidebar tests should hide sidebar after clicking on close menu" duration="490"/>
+  </file>
+  <file path="/Users/luan.carlos/projects/acelera/carango-bom-base/src/tests/App.spec.js">
+    <testCase name="App tests shoud render the app component" duration="459"/>
+    <testCase name="App tests should render vehicle form after navigating to /vehicle-new" duration="233"/>
+    <testCase name="App tests should render vehicle form after navigating to /vehicle-edit/:id" duration="183"/>
+    <testCase name="App tests should render user form after navigating to /user-new" duration="136"/>
+    <testCase name="App tests should navigate to route after clicking on sidebar item" duration="579"/>
+  </file>
+  <file path="/Users/luan.carlos/projects/acelera/carango-bom-base/src/tests/components/InputSelect.test.js">
+    <testCase name="InputSelect test should display value passed as prop" duration="80"/>
+    <testCase name="InputSelect test should call on select function" duration="46"/>
+    <testCase name="InputSelect test should display value selected" duration="115"/>
+  </file>
+  <file path="/Users/luan.carlos/projects/acelera/carango-bom-base/src/tests/components/InputText.test.js">
+    <testCase name="InputText test should display value passed as prop" duration="111"/>
+    <testCase name="InputText test should call on change function" duration="44"/>
+    <testCase name="InputText test should display label" duration="29"/>
+    <testCase name="InputText test should have type text" duration="30"/>
+    <testCase name="InputText test should have attribute minLength passed as prop" duration="29"/>
+    <testCase name="InputText test should have attribute maxLength passed as prop" duration="22"/>
+    <testCase name="InputText test should call on blur function" duration="25"/>
+    <testCase name="InputText test should have the id passed as prop" duration="23"/>
+  </file>
+  <file path="/Users/luan.carlos/projects/acelera/carango-bom-base/src/tests/components/VehicleForm.test.js">
+    <testCase name="VehicleForm page should show form with all fields" duration="348"/>
+    <testCase name="VehicleForm page should call onSubmit function when submit button is clicked" duration="119"/>
+    <testCase name="VehicleForm page should call onCancel function when cancel button is clicked" duration="106"/>
+    <testCase name="VehicleForm page should return the correct object on submit" duration="168"/>
+    <testCase name="VehicleForm page should validate model and year" duration="1"/>
+  </file>
+</testExecutions>
