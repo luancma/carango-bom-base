@@ -4,15 +4,18 @@ const API_URL = "https://backend-acelera.herokuapp.com";
 
 class LoginService {
   static async login(payload) {
-    fetch(`${API_URL}/auth`, {
+    const response = await fetch(`${API_URL}/auth`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(payload),
-    })
-      .then(response => response.json())
-      .then(({ token }) => StorageService.save("token", token));
+    });
+    if (!response.ok) {
+      throw new Error(`Erro: ${response.status}`);
+    }
+    const { token } = await response.json();
+    StorageService.save("token", token);
   }
 }
 

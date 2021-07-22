@@ -3,9 +3,9 @@ import LoginForm from "../components/LoginForm";
 import LoginService from "../services/LoginService";
 
 function Login() {
-  const onSubmit = user => {
+  const onSubmit = async user => {
     try {
-      LoginService.login(user);
+      await LoginService.login(user);
     } catch (error) {
       console.error(error);
     }
