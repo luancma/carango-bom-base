@@ -10,7 +10,7 @@ export const useFetch = ({ url, loadMessage = "Caregando..." }) => {
     setData(null);
     setError(null);
 
-    const url = fetch(url)
+    fetch(url)
       .then(response => {
         if (validateFetch(response)) {
           response.json().then(response => {
