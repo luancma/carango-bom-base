@@ -13,6 +13,7 @@ import HeaderAndSidebar from "components/HeaderAndSidebar";
 import { paths } from "components/HeaderAndSidebar/paths";
 import RegisterUser from "pages/RegisterUser";
 import ListUser from "pages/ListUser";
+import NotFound from "./pages/NotFound";
 
 const muiTheme = createMuiTheme(
   {
@@ -75,8 +76,11 @@ function App() {
               <Route path={paths.userList}>
                 <ListUser />
               </Route>
-              <Route path={paths.home}>
+              <Route exact path={paths.home}>
                 <ListagemMarcas></ListagemMarcas>
+              </Route>
+              <Route path="*">
+                <NotFound />
               </Route>
             </Switch>
           </Container>
