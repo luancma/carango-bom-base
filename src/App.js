@@ -6,8 +6,9 @@ import React from "react";
 import "./App.css";
 import HeaderAndSidebar from "components/HeaderAndSidebar";
 import { AuthProvider } from "context/AuthContext"
+import { SnackBarProvider } from "context/SnackBarProvider"
 import Routes from "routes";
-
+import SnackBar from "./components/SnackBar"
 const muiTheme = createMuiTheme(
   {
     palette: {
@@ -40,6 +41,8 @@ function App() {
   const classes = useStyles();
   return (
     <ThemeProvider theme={muiTheme}>
+      <SnackBarProvider>
+        <SnackBar />
       <AuthProvider>
         <div className={classes.root}>
           <CssBaseline />
@@ -52,6 +55,7 @@ function App() {
           </main>
         </div>
       </AuthProvider>
+      </SnackBarProvider>
     </ThemeProvider>
   );
 }

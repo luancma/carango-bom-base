@@ -1,17 +1,26 @@
 import React from "react";
 import LoginForm from "../components/LoginForm";
-import LoginService from "../services/LoginService";
+import { useAuth } from "../context/AuthContext";
 
+import { Redirect } from "react-router-dom";
 function Login() {
+
+  const { signIn, isAuth } = useAuth();
+
   const onSubmit = async user => {
     try {
-      await LoginService.login(user);
+      signIn({
+        username: user.username,
+        password: user.password,
+      });
     } catch (error) {
       console.error(error);
     }
   };
 
-  return <LoginForm onSubmit={onSubmit} />;
+  return (
+    <>{isAuth ? <Redirect to="/" /> : <LoginForm onSubmit={onSubmit} />}</>
+  );
 }
 
 export default Login;
