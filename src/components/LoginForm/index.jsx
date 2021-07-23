@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import InputText from "components/InputText";
 
 function LoginForm({ onSubmit }) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("admin");
+  const [password, setPassword] = useState("123456");
 
   const handleSubmit = event => {
     event.preventDefault();
