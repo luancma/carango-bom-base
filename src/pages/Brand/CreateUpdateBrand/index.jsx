@@ -4,36 +4,38 @@ import BrandService from '../../../services/BrandService';
 import BrandForm from '../BrandForm';
 import { useGetBrandById } from '../hooks/useGetBrandById';
 
+
 function BrandRegister() {
 
-    const history = useHistory();
+	const history = useHistory();
 
-    const { id } = useParams();
-    const brand = useGetBrandById(id);
+	const { id } = useParams();
 
-    function onCancel() {
-        history.goBack();
-    }
+	const brand = useGetBrandById(id);
 
-    const onSubmit = (name) => {
+	function onCancel() {
+		history.goBack();
+	}
 
-        if (id) {
+	const onSubmit = (name) => {
 
-            BrandService.update(id, { id, name })
-                .then(res => {
-                    history.goBack();
-                });
-        } else {
-            BrandService.create({ name })
-                .then(res => {
-                    history.goBack();
-                });
-        }
-    }
+		if (id) {
 
-    return (
-        <BrandForm brand={brand} onSubmit={onSubmit} onCancel={onCancel} />
-    );
+			BrandService.update(id, { id, name })
+				.then(res => {
+					history.goBack();
+				});
+		} else {
+			BrandService.create({ name })
+				.then(res => {
+					history.goBack();
+				});
+		}
+	}
+
+	return (
+		<BrandForm brand={brand} onSubmit={onSubmit} onCancel={onCancel} />
+	);
 }
 
 export default BrandRegister;

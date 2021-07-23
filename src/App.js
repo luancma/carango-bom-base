@@ -3,11 +3,10 @@ import blue from "@material-ui/core/colors/blue";
 import { ptBR } from "@material-ui/core/locale";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import React from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
 import "./App.css";
 import HeaderAndSidebar from "components/HeaderAndSidebar";
-
-import { authRoutes } from "routes/auth.routes";
+import { AuthProvider } from "context/AuthContext"
+import Routes from "routes";
 
 const muiTheme = createMuiTheme(
   {
@@ -39,27 +38,20 @@ const useStyles = makeStyles(theme => ({
 
 function App() {
   const classes = useStyles();
-
   return (
     <ThemeProvider theme={muiTheme}>
-      <div className={classes.root}>
-        <CssBaseline />
-        <HeaderAndSidebar />
-        <main data-testid="main" className={classes.content}>
-          <div className={classes.toolbar} />
-          <Container component="article" maxWidth="md">
-            <Switch>
-              {
-                authRoutes.map((route, index) => (
-                  <Route key={index} exact path={route.path} component={route.component} />
-                ))
-              }
-
-              <Redirect to="/vehicle" />
-            </Switch>
-          </Container>
-        </main>
-      </div>
+      <AuthProvider>
+        <div className={classes.root}>
+          <CssBaseline />
+          <HeaderAndSidebar />
+          <main data-testid="main" className={classes.content}>
+            <div className={classes.toolbar} />
+            <Container component="article" maxWidth="md">
+              <Routes />
+            </Container>
+          </main>
+        </div>
+      </AuthProvider>
     </ThemeProvider>
   );
 }
