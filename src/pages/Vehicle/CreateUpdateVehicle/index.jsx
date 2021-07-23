@@ -1,14 +1,14 @@
-import React from 'react';
-import { useHistory, useParams } from 'react-router';
-import VehicleService from '../../../services/VehicleService';
-import VehicleForm from '../VehicleForm';
+import React from "react";
+import { useHistory, useParams } from "react-router";
+import VehicleService from "../../../services/VehicleService";
+import VehicleForm from "../VehicleForm";
 import { useGetBrands } from "../hooks/useGetBrands";
-// import { useGetUserById } from '../hooks/useGetUserById';
+import { useGetVehicleById } from "../hooks/useGetVehicleById";
 
 function CreateUpdateVehicle() {
   const history = useHistory();
   const { id } = useParams();
-  // const user = useGetUserById(id);
+  const vehicle = useGetVehicleById(id);
 
   const brands = useGetBrands();
 
@@ -16,23 +16,25 @@ function CreateUpdateVehicle() {
     history.goBack();
   }
 
-  const onSubmit = (username) => {
-
+  const onSubmit = vehicle => {
     if (id) {
-      VehicleService.update(id, { id, username })
-        .then(res => {
-          history.goBack();
-        });
+      VehicleService.update(id, vehicle).then(res => {
+        history.goBack();
+      });
     } else {
-      VehicleService.create({ username })
-        .then(res => {
-          history.goBack();
-        });
+      VehicleService.create(vehicle).then(res => {
+        history.goBack();
+      });
     }
-  }
+  };
 
   return (
-    <VehicleForm onSubmit={onSubmit} onCancel={onCancel} brandOptions={brands} />
+    <VehicleForm
+      onSubmit={onSubmit}
+      onCancel={onCancel}
+      brandOptions={brands}
+      vehicle={vehicle}
+    />
   );
 }
 

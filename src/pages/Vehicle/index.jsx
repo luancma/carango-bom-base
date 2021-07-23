@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router";
 import DataGridPaginated2 from "components/DataGridPaginated2";
 import CurrencyUtil from "util/CurrencyUtil";
 import VehicleService from "services/VehicleService";
-import ConfirmDialog from "components/ConfirmDialog";
-import AddButton from "components/AddButton"
+import AddButton from "components/AddButton";
 
 const gridColumns = [
   {
@@ -31,19 +30,11 @@ const gridColumns = [
     flex: 1,
     valueFormatter: params =>
       `R$ ${CurrencyUtil.formatCurrencyWithDots(params.row.price)}`,
-  }
+  },
 ];
 
 const ListVehicle = () => {
   const history = useHistory();
-
-  const [idToDelete, setIdToDelete] = useState("");
-
-  const [showConfirm, setShowConfirm] = useState(false);
-  const confirmProps = {
-    title: "Excluir",
-    message: "Tem certeza que deseja excluir?",
-  };
 
   const handleItemClick = id => {
     if (id) {
@@ -51,18 +42,12 @@ const ListVehicle = () => {
     }
   };
 
-  const handleDeleteItem = async () => {
-    await VehicleService.remove(idToDelete);
-    setShowConfirm(false);
-    setIdToDelete("");
+  const handleDeleteItem = async id => {
+    await VehicleService.remove(id);
   };
 
-  const handleOpenDialog = id => {
-    setIdToDelete(id);
-    setShowConfirm(true);
-  };
-
-  const fetchVehicles = async (page, size) => await VehicleService.findAllPaged(page, size);
+  const fetchVehicles = async (page, size) =>
+    await VehicleService.findAllPaged(page, size);
 
   return (
     <>
@@ -71,17 +56,10 @@ const ListVehicle = () => {
           fetchItems={fetchVehicles}
           columns={gridColumns}
           onItemClick={handleItemClick}
-          onDelete={handleOpenDialog}
+          onDelete={handleDeleteItem}
         />
-        <AddButton onClick={() => history.push('/vehicle/create')} />
+        <AddButton onClick={() => history.push("/vehicle/create")} />
       </div>
-      <ConfirmDialog
-        title={confirmProps.title}
-        message={confirmProps.message}
-        open={showConfirm}
-        onClose={() => setShowConfirm(false)}
-        onConfirm={() => handleDeleteItem()}
-      />
     </>
   );
 };

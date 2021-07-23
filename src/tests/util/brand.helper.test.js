@@ -1,6 +1,6 @@
-import { formatBrands } from "../../libs/brand";
+import { formatBrands } from "../../util/brand.helper";
 
-describe("brand lib test", () => {
+describe("brand helper test", () => {
   it("should return formatted brands array", () => {
     const brands = [
       { nome: "marca1", id: 1 },
