@@ -45,7 +45,9 @@ const DataGridPaginated2 = ({
 
   const handleDelete = async (evt, id) => {
     evt.stopPropagation();
-    await onDelete(id)
+    console.log(id, evt)
+    const resp = await onDelete(id)
+    console.log(resp)
     setPage(0);
     setRefresh(!refresh)
   }

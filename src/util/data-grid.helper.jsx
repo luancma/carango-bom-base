@@ -37,12 +37,12 @@ const deleteColumn = (onDelete) => {
 export const makeDataGridColumns = (gridData, onDelete) => {
   const columns = [];
   gridData.forEach(data => {
-    const item = {
-      field: data.field,
-      headerName: data.headerName,
-      flex: 1
-    }
-    columns.push(item)
+    /*     const item = {
+          field: data.field,
+          headerName: data.headerName,
+          flex: 1
+        } */
+    columns.push(data)
   });
   columns.push(deleteColumn(onDelete))
   return columns;

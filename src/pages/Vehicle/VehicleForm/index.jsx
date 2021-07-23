@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import InputText from "../InputText";
-import InputNumber from "../InputNumber";
-import InputCurrency from "../InputCurrency";
-import InputSelect from "../InputSelect";
+import InputText from "../../../components/InputText";
+import InputNumber from "../../../components/InputNumber";
+import InputCurrency from "../../../components/InputCurrency";
+import InputSelect from "../../../components/InputSelect";
 import useFormErrors from "hooks/useFormErrors";
 import { validations, minYear, maxYear } from "./validations";
 import FormActions from "components/FormActions";
 
-function VehicleForm({ onSubmit, onCancel, brandOptions, existingVehicle }) {
+
+function VehicleForm({ onSubmit, onCancel, brandOptions, vehicle }) {
+  const [brands, setBrands] = useState([]);
   const [brand, setBrand] = useState("");
   const [model, setModel] = useState("");
   const [year, setYear] = useState(2021);
@@ -16,13 +18,19 @@ function VehicleForm({ onSubmit, onCancel, brandOptions, existingVehicle }) {
   const [errors, validateFields, canSubmit] = useFormErrors(validations);
 
   useEffect(() => {
-    if (existingVehicle) {
-      setBrand(existingVehicle.brand);
-      setModel(existingVehicle.model);
-      setYear(existingVehicle.year);
-      setValue(existingVehicle.value);
+    if (vehicle) {
+      setBrand(vehicle.brand);
+      setModel(vehicle.model);
+      setYear(vehicle.year);
+      setValue(vehicle.value);
     }
-  }, [existingVehicle]);
+  }, [vehicle]);
+
+  useEffect(() => {
+    if (brandOptions) {
+      setBrands(brandOptions);
+    }
+  }, [brandOptions])
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -37,7 +45,7 @@ function VehicleForm({ onSubmit, onCancel, brandOptions, existingVehicle }) {
       <InputSelect
         value={brand}
         onSelect={setBrand}
-        itemsSelect={brandOptions}
+        itemsSelect={brands}
         label="Marca"
         id="marca"
         required
@@ -81,7 +89,7 @@ function VehicleForm({ onSubmit, onCancel, brandOptions, existingVehicle }) {
         required
         margin="normal"
       />
-      <FormActions isEdit={!!existingVehicle} onCancel={onCancel} />
+      <FormActions isEdit={!!vehicle && vehicle.id} onCancel={onCancel} />
     </form>
   );
 }

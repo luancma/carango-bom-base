@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory, useParams } from 'react-router';
 import UserService from '../../../services/UserService';
-import BrandForm from '../UserForm';
+import UserForm from '../UserForm';
 import { useGetUserById } from '../hooks/useGetUserById';
 
 
@@ -9,7 +9,7 @@ function CreateUpdateUser() {
 
 	const history = useHistory();
 	const { id } = useParams();
-	const brand = useGetUserById(id);
+	const user = useGetUserById(id);
 
 	function onCancel() {
 		history.goBack();
@@ -18,7 +18,6 @@ function CreateUpdateUser() {
 	const onSubmit = (username) => {
 
 		if (id) {
-
 			UserService.update(id, { id, username })
 				.then(res => {
 					history.goBack();
@@ -32,7 +31,7 @@ function CreateUpdateUser() {
 	}
 
 	return (
-		<BrandForm brand={brand} onSubmit={onSubmit} onCancel={onCancel} />
+		<UserForm user={user} onSubmit={onSubmit} onCancel={onCancel} />
 	);
 }
 

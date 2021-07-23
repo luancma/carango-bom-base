@@ -1,9 +1,7 @@
 
 export default class BaseService {
 
-  // BASE_API_URL = 'https://carango-bom-api.herokuapp.com/';
-  // BASE_API_URL = 'https://backend-acelera.herokuapp.com';
-  BASE_API_URL = 'http://localhost:8080';
+  BASE_API_URL = process.env.REACT_APP_PROD_BASE_URL;
   BASE_URL = '';
 
   constructor(url) {
@@ -17,7 +15,13 @@ export default class BaseService {
         "Content-Type": "application/json"
       },
       body: object ? JSON.stringify(object) : null,
-    }).then(r => r.json());
+    }).then(r => {
+      try {
+        return r.json()
+      } catch (error) {
+        console.error(error)
+      }
+    });
   }
 
   async create(object) {
@@ -25,7 +29,6 @@ export default class BaseService {
   }
 
   async update(id, object) {
-    console.log(object)
     const url = `${this.BASE_URL}/${id}`
     return await this.makeRequest(url, 'PUT', object);
   }
@@ -34,10 +37,11 @@ export default class BaseService {
     return await this.makeRequest(`${this.BASE_URL}/${id}`);
   }
 
-  async findAll(page, size = 10, paged = true) {
-    if (paged) {
-      return await this.makeRequest(`${this.BASE_URL}?page=${page}&size=${size}`);
-    }
+  async findAllPaged(page, size = 10) {
+    return await this.makeRequest(`${this.BASE_URL}?page=${page}&size=${size}`);
+  }
+
+  async findAll() {
     return await this.makeRequest(`${this.BASE_URL}`)
   }
 
