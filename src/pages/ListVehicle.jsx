@@ -1,13 +1,18 @@
 import React, { useState } from "react";
+
+import { useHistory } from "react-router";
+
 import DataGridPaginated from "components/DataGridPaginated";
 import useVehicle from "hooks/useVehicle";
 import VehicleUtil from "util/VehicleUtil";
 import ConfirmDialog from "../components/ConfirmDialog";
 
 const ListVehicle = () => {
+  const history = useHistory();
   const vehiclesPerPage = 10;
-  const [defaultPage, setDefaultPage] = useState(0);
+  const [defaultPage, setDefaultPage] = useState({ value: 0 });
   const [idToDelete, setIdToDelete] = useState("");
+
   const { vehicles, loading, fetchVehicles, vehiclesTotal, deleteVehicleById } =
     useVehicle({
       size: vehiclesPerPage,
@@ -20,12 +25,14 @@ const ListVehicle = () => {
   };
 
   const handleItemClick = id => {
-    console.log(`You clicked in vehicle with id ${id}`);
+    if (id) {
+      history.push("/vehicle-edit/" + id);
+    }
   };
 
   const handleDeleteItem = async () => {
     await deleteVehicleById(idToDelete);
-    setDefaultPage(0);
+    setDefaultPage({ value: 0 });
     setShowConfirm(false);
   };
 
@@ -39,7 +46,7 @@ const ListVehicle = () => {
 
   return (
     <>
-      <div style={{ height: 300, width: "100%" }}>
+      <div>
         <DataGridPaginated
           defaultPage={defaultPage}
           loading={loading}
