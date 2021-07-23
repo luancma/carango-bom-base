@@ -3,7 +3,7 @@ import InputText from "../InputText";
 import InputNumber from "../InputNumber";
 import InputCurrency from "../InputCurrency";
 import InputSelect from "../InputSelect";
-import useErros from "hooks/useErros";
+import useFormErrors from "hooks/useFormErrors";
 import { validations, minYear, maxYear } from "./validations";
 import FormActions from "components/FormActions";
 
@@ -13,7 +13,7 @@ function VehicleForm({ onSubmit, onCancel, brandOptions, existingVehicle }) {
   const [year, setYear] = useState(2021);
   const [value, setValue] = useState(0);
 
-  const [errors, validateFields, canSubmit] = useErros(validations);
+  const [errors, validateFields, canSubmit] = useFormErrors(validations);
 
   useEffect(() => {
     if (existingVehicle) {

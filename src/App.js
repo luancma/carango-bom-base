@@ -3,18 +3,10 @@ import blue from "@material-ui/core/colors/blue";
 import { ptBR } from "@material-ui/core/locale";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import React from "react";
-import { Route, Switch } from "react-router-dom";
 import "./App.css";
-import CadastroMarca from "./pages/CadastroMarca";
-import ListagemMarcas from "./pages/ListagemMarcas";
-import RegisterVehicle from "./pages/RegisterVehicle";
-import ListVehicle from "pages/ListVehicle";
 import HeaderAndSidebar from "components/HeaderAndSidebar";
-import { paths } from "components/HeaderAndSidebar/paths";
-import RegisterUser from "pages/RegisterUser";
-import ListUser from "pages/ListUser";
-import NotFound from "./pages/NotFound";
-import Login from "pages/Login";
+import { AuthProvider } from "context/AuthContext"
+import Routes from "routes";
 
 const muiTheme = createMuiTheme(
   {
@@ -46,50 +38,20 @@ const useStyles = makeStyles(theme => ({
 
 function App() {
   const classes = useStyles();
-
   return (
     <ThemeProvider theme={muiTheme}>
-      <div className={classes.root}>
-        <CssBaseline />
-        <HeaderAndSidebar />
-        <main data-testid="main" className={classes.content}>
-          <div className={classes.toolbar} />
-          <Container component="article" maxWidth="md">
-            <Switch>
-              <Route path="/login">
-                <Login />
-              </Route>
-              <Route path={paths.brandCreate}>
-                <CadastroMarca></CadastroMarca>
-              </Route>
-              <Route path={`${paths.brandEdit}/:id`}>
-                <CadastroMarca></CadastroMarca>
-              </Route>
-              <Route path={paths.vehicleCreate}>
-                <RegisterVehicle />
-              </Route>
-              <Route path={`${paths.vehicleEdit}/:id`}>
-                <RegisterVehicle />
-              </Route>
-              <Route path={paths.vehicleList}>
-                <ListVehicle />
-              </Route>
-              <Route path={paths.userCreate}>
-                <RegisterUser />
-              </Route>
-              <Route path={paths.userList}>
-                <ListUser />
-              </Route>
-              <Route exact path={paths.home}>
-                <ListagemMarcas></ListagemMarcas>
-              </Route>
-              <Route path="*">
-                <NotFound />
-              </Route>
-            </Switch>
-          </Container>
-        </main>
-      </div>
+      <AuthProvider>
+        <div className={classes.root}>
+          <CssBaseline />
+          <HeaderAndSidebar />
+          <main data-testid="main" className={classes.content}>
+            <div className={classes.toolbar} />
+            <Container component="article" maxWidth="md">
+              <Routes />
+            </Container>
+          </main>
+        </div>
+      </AuthProvider>
     </ThemeProvider>
   );
 }
