@@ -1,29 +1,27 @@
 import CreateUpdateBrand from "../pages/Brand/CreateUpdateBrand";
 import Brand from "../pages/Brand";
-import ListVehicle from "../pages/ListVehicle";
-import RegisterUser from "../pages/RegisterUser";
-import RegisterVehicle from "../pages/RegisterVehicle";
+import Vehicle from "../pages/Vehicle";
+import CreateUpdateVehicle from "../pages/Vehicle/CreateUpdateVehicle";
 import UserList from "pages/User";
 import CreateUpdateUser from "pages/User/CreateUpdateUser";
 import Dashboard from "pages/Dashboard";
-
 
 export const authRoutes = [
   {
     path: "/vehicle",
     title: "Veículos",
-    component: ListVehicle,
+    component: Vehicle,
     sidebar: true,
   },
   {
     path: "/vehicle/create",
-    title: "Veículo",
-    component: RegisterVehicle,
+    title: "Veículos",
+    component: CreateUpdateVehicle,
   },
   {
     path: "/vehicle/:id",
-    title: "Veículo",
-    component: RegisterVehicle,
+    title: "Veículos",
+    component: CreateUpdateVehicle,
   },
   {
     path: "/brand",
@@ -49,11 +47,6 @@ export const authRoutes = [
   },
   {
     path: "/user/create",
-    title: "Usuário",
-    component: CreateUpdateUser,
-  },
-  {
-    path: "/user/:id",
     title: "Usuário",
     component: CreateUpdateUser,
   },

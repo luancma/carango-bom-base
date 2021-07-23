@@ -1,33 +1,40 @@
 import React, { useEffect, useState } from "react";
-import InputText from "../InputText";
-import InputNumber from "../InputNumber";
-import InputCurrency from "../InputCurrency";
-import InputSelect from "../InputSelect";
+import InputText from "../../../components/InputText";
+import InputNumber from "../../../components/InputNumber";
+import InputCurrency from "../../../components/InputCurrency";
+import InputSelect from "../../../components/InputSelect";
 import useFormErrors from "hooks/useFormErrors";
 import { validations, minYear, maxYear } from "./validations";
 import FormActions from "components/FormActions";
 
-function VehicleForm({ onSubmit, onCancel, brandOptions, existingVehicle }) {
-  const [brand, setBrand] = useState("");
+function VehicleForm({ onSubmit, onCancel, brandOptions, vehicle }) {
+  const [brands, setBrands] = useState([]);
+  const [brandId, setBrandId] = useState("");
   const [model, setModel] = useState("");
   const [year, setYear] = useState(2021);
-  const [value, setValue] = useState(0);
+  const [price, setPrice] = useState(0);
 
   const [errors, validateFields, canSubmit] = useFormErrors(validations);
 
   useEffect(() => {
-    if (existingVehicle) {
-      setBrand(existingVehicle.brand);
-      setModel(existingVehicle.model);
-      setYear(existingVehicle.year);
-      setValue(existingVehicle.value);
+    if (vehicle.brand) {
+      setBrandId(vehicle.brand.id);
+      setModel(vehicle.model);
+      setYear(vehicle.year);
+      setPrice(vehicle.price);
     }
-  }, [existingVehicle]);
+  }, [vehicle]);
+
+  useEffect(() => {
+    if (brandOptions) {
+      setBrands(brandOptions);
+    }
+  }, [brandOptions]);
 
   const handleSubmit = event => {
     event.preventDefault();
     if (canSubmit()) {
-      const vehicle = { brand, model, year, value };
+      const vehicle = { brandId, model, year, price };
       onSubmit(vehicle);
     }
   };
@@ -35,30 +42,31 @@ function VehicleForm({ onSubmit, onCancel, brandOptions, existingVehicle }) {
   return (
     <form name="vehicle-form" aria-label="vehicle form" onSubmit={handleSubmit}>
       <InputSelect
-        value={brand}
-        onSelect={setBrand}
-        itemsSelect={brandOptions}
+        value={brandId}
+        onSelect={setBrandId}
+        itemsSelect={brands}
         label="Marca"
-        id="marca"
+        id="brand"
+        name="brand"
         required
       />
       <InputText
         label="Modelo"
-        name="modelo"
-        id="modelo"
+        name="model"
+        id="model"
         value={model}
         onChange={setModel}
         fullWidth
         required
         margin="normal"
-        error={!errors.modelo.valido}
-        helperText={errors.modelo.texto}
+        error={!errors.model.isValid}
+        helperText={errors.model.text}
         onBlur={validateFields}
       />
       <InputNumber
         label="Ano"
-        name="ano"
-        id="ano"
+        name="year"
+        id="year"
         value={year}
         onChange={setYear}
         min={minYear}
@@ -66,22 +74,23 @@ function VehicleForm({ onSubmit, onCancel, brandOptions, existingVehicle }) {
         fullWidth
         required
         margin="normal"
-        error={!errors.ano.valido}
-        helperText={errors.ano.texto}
+        error={!errors.year.isValid}
+        helperText={errors.year.text}
         onBlur={validateFields}
       />
       <InputCurrency
         label="Valor"
-        id="valor"
-        value={value}
-        onChange={setValue}
+        id="price"
+        name="price"
+        value={price}
+        onChange={setPrice}
         minimum={0}
         currencySymbol="R$"
         fullWidth
         required
         margin="normal"
       />
-      <FormActions isEdit={!!existingVehicle} onCancel={onCancel} />
+      <FormActions isEdit={!!vehicle && vehicle.id} onCancel={onCancel} />
     </form>
   );
 }

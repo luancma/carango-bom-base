@@ -1,12 +1,12 @@
 export const validations = {
-  modelo: input => {
+  model: input => {
     const isValid = input && input.length >= 2 && input.length <= 100;
     return {
       isValid,
       text: isValid ? "" : "Modelo deve ter entre 2 e 100 caracteres.",
     };
   },
-  ano: input => {
+  year: input => {
     const isValid = input && input >= minYear && input <= maxYear;
     return {
       isValid,

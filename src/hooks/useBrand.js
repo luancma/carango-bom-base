@@ -25,10 +25,9 @@ const useBrand = ({ size = 10, paged }) => {
       console.log('test')
       setLoading(true);
       try {
-        const { content = [], total = 0 } = await BrandService.findAll(
+        const { content = [], total = 0 } = await BrandService.findAllPaged(
           page,
-          size,
-          paged
+          size
         );
         setAllBrands(content);
         setTotalBrands(total);

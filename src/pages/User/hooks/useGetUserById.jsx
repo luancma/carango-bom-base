@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import UserService from "services/UserService";
 
 export function useGetUserById(id) {
-  const [brand, setBrand] = useState({});
+  const [user, setUser] = useState({});
   useEffect(() => {
 
-    const fetchBrand = async () => {
+    const fetchUser = async () => {
       const resp = await UserService.findById(id)
       if (resp.id) {
-        return setBrand(resp);
+        return setUser(resp);
       }
-      return setBrand();
+      return setUser();
     };
 
-    !!id && fetchBrand();
+    !!id && fetchUser();
 
   }, [id]);
-  return brand;
+  return user;
 }
