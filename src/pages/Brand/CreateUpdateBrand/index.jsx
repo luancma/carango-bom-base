@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useHistory, useParams } from 'react-router';
 import BrandService from '../../../services/BrandService';
 import BrandForm from '../BrandForm';
-import { useFetchBrand } from '../hooks/useFetchBrand';
+import { useGetBrandById } from '../hooks/useGetBrandById';
 
 function BrandRegister() {
 
     const history = useHistory();
 
     const { id } = useParams();
-    const brand = useFetchBrand(id);
+    const brand = useGetBrandById(id);
+
     function onCancel() {
         history.goBack();
     }
@@ -17,12 +18,13 @@ function BrandRegister() {
     const onSubmit = (name) => {
 
         if (id) {
-            BrandService.alterar({ id, name })
+
+            BrandService.update(id, { id, name })
                 .then(res => {
                     history.goBack();
                 });
         } else {
-            BrandService.cadastrar({ name })
+            BrandService.create({ name })
                 .then(res => {
                     history.goBack();
                 });

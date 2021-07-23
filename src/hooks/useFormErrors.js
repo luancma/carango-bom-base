@@ -1,4 +1,3 @@
-import { NearMe } from '@material-ui/icons';
 import { useState } from 'react';
 
 function useFormErrors(validations) {
@@ -10,8 +9,6 @@ function useFormErrors(validations) {
     function validFields(event) {
         const { name, value } = event.target;
         const newState = { ...errors };
-        console.log(validations)
-        console.log(validations[name], name, value)
         newState[name] = validations[name](value);
         setErrors(newState);
     }

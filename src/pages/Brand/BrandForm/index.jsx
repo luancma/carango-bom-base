@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useFormErrors from "hooks/useFormErrors";
 import { validations } from "./validations";
 import FormActions from "components/FormActions";
 import InputText from "components/InputText";
-import { useFetchBrand } from "../hooks/useFetchBrand";
 
 function BrandForm({ brand, onSubmit, onCancel }) {
-  const [name, setName] = useState("");
 
+  const [name, setName] = useState("");
   const [errors, validateFields, canSubmit] = useFormErrors(validations);
+
+  useEffect(() => {
+    if (brand.name) {
+      setName(brand.name)
+    }
+  }, [brand])
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -17,17 +22,13 @@ function BrandForm({ brand, onSubmit, onCancel }) {
     }
   };
 
-  const handlerName = () => {
-    return !!brand && brand.name ? brand.name : name
-  }
-
   return (
     <form name="brand-form" aria-label="brand form" onSubmit={handleSubmit}>
       <InputText
         label="Marca"
         name="name"
         id="name"
-        value={handlerName()}
+        value={name}
         onChange={setName}
         fullWidth
         required
@@ -36,7 +37,7 @@ function BrandForm({ brand, onSubmit, onCancel }) {
         helperText={errors.name.text}
         onBlur={validateFields}
       />
-      <FormActions onCancel={onCancel} />
+      <FormActions onCancel={onCancel} isEdit={brand && brand.name} />
     </form>
   );
 }

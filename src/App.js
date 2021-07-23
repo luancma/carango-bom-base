@@ -3,7 +3,7 @@ import blue from "@material-ui/core/colors/blue";
 import { ptBR } from "@material-ui/core/locale";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import "./App.css";
 import HeaderAndSidebar from "components/HeaderAndSidebar";
 
@@ -54,6 +54,8 @@ function App() {
                   <Route key={index} exact path={route.path} component={route.component} />
                 ))
               }
+
+              <Redirect to="/vehicle" />
             </Switch>
           </Container>
         </main>

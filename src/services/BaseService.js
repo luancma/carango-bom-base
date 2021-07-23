@@ -2,7 +2,7 @@
 export default class BaseService {
 
   // BASE_API_URL = 'https://carango-bom-api.herokuapp.com/';
-  BASE_API_URL = 'http://localhost:8080';
+  BASE_API_URL = 'https://backend-acelera.herokuapp.com';
   BASE_URL = '';
 
   constructor(url) {
@@ -19,24 +19,28 @@ export default class BaseService {
     }).then(r => r.json());
   }
 
-  async cadastrar(object) {
+  async create(object) {
     return await this.makeRequest(this.BASE_URL, 'POST', object);
   }
 
-  async alterar(id, object) {
+  async update(id, object) {
+    console.log(object)
     const url = `${this.BASE_URL}/${id}`
     return await this.makeRequest(url, 'PUT', object);
   }
 
-  async consultar(id) {
-    return await this.makeRequest(`${this.BASE_URL}/${id}}`);
+  async findById(id) {
+    return await this.makeRequest(`${this.BASE_URL}/${id}`);
   }
 
-  async listar() {
-    return await this.makeRequest(`${this.BASE_URL}`);
+  async findAll(page, size = 10, paged = true) {
+    if (paged) {
+      return await this.makeRequest(`${this.BASE_URL}?page=${page}&size=${size}`);
+    }
+    return await this.makeRequest(`${this.BASE_URL}`)
   }
 
-  async excluir(id) {
-    return await this.makeRequest(`${this.BASE_URL}/${id}}`, 'DELETE');
+  async remove(id) {
+    return await this.makeRequest(`${this.BASE_URL}/${id}`, 'DELETE');
   }
 }

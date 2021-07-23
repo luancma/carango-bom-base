@@ -18,7 +18,7 @@ function RegisterVehicle() {
 
   useEffect(() => {
     const getBrands = async () => {
-      const options = await BrandService.listar();
+      const options = await BrandService.findAll();
       setBrandOptions(formatBrands(options));
     };
     getBrands();

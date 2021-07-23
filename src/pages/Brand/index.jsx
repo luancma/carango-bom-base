@@ -1,11 +1,11 @@
-import { Button, Fab, makeStyles } from "@material-ui/core";
-import { DataGrid } from "@material-ui/data-grid";
+import { Fab, makeStyles } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
-import React, { useEffect, useState } from "react";
+import DataGridPaginated2 from "../../components/DataGridPaginated2";
+import React from "react";
 import { useHistory } from "react-router";
 import BrandService from "../../services/BrandService";
 
-const colunas = [{ field: "nome", headerName: "Marca", width: 200 }];
+const gridColumns = [{ field: "name", headerName: "Marca" }];
 
 const useStyles = makeStyles(() => ({
   fab: {
@@ -22,65 +22,30 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function ListagemMarcas() {
+function BrandsList() {
 
-  const [marcas, setMarcas] = useState([]);
-  const [marcaSelecionada, setMarcaSelecionada] = useState();
+
   const classes = useStyles();
   const history = useHistory();
 
-  function alterar() {
-    history.push("/brand/" + marcaSelecionada?.id);
+  function alterar(id) {
+    history.push("/brand/" + id);
   }
 
-  function excluir() {
-    BrandService.excluir(marcaSelecionada).then(() => {
-      setMarcaSelecionada(null);
-      carregarMarcas();
-    });
+  async function excluir(id) {
+    await BrandService.remove(id);
   }
 
-  // TODO: Avaliar remover disable na próxima linha
-  // eslint-disable-next-line
-  useEffect(() => carregarMarcas(), []);
-
-  async function carregarMarcas() {
-    const resp = await BrandService.listar();
-    if (!!resp.content && resp.content.length > 0) {
-      setMarcas(resp.content);
-    } else {
-      setMarcas([]);
-    }
-  }
+  const brandServiceListar = async (page, size, paged) => await BrandService.findAll(page, size, paged);
 
   return (
     <div style={{ height: 300, width: "100%" }}>
-      <DataGrid
-        rows={marcas}
-        columns={colunas}
-        onRowSelected={gridSelection => setMarcaSelecionada(gridSelection.data)}
+      <DataGridPaginated2
+        fetchItems={brandServiceListar}
+        columns={gridColumns}
+        onItemClick={alterar}
+        onDelete={excluir}
       />
-
-      <div className={classes.actionsToolbar}>
-        <Button
-          className={classes.actions}
-          variant="contained"
-          color="secondary"
-          disabled={!marcaSelecionada}
-          onClick={() => excluir()}
-        >
-          Excluir
-        </Button>
-        <Button
-          className={classes.actions}
-          variant="contained"
-          color="primary"
-          disabled={!marcaSelecionada}
-          onClick={() => alterar()}
-        >
-          Alterar
-        </Button>
-      </div>
 
       <Fab
         color="primary"
@@ -94,4 +59,4 @@ function ListagemMarcas() {
   );
 }
 
-export default ListagemMarcas;
+export default BrandsList;
