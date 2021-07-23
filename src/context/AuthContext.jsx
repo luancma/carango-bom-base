@@ -7,7 +7,7 @@ export function AuthProvider({ children }) {
   // isAuth default to false
   // const [isAuth, setIsAuth] = useState(JSON.parse(localStorage.getItem("isAuth")) || false);
   const [isAuth, setIsAuth] = useState(
-    JSON.parse(localStorage.getItem("isAuth")) || false,
+    JSON.parse(localStorage.getItem("isAuth")) || true,
   );
   const [username, setUsername] = useState(
     JSON.parse(localStorage.getItem("username")) || "",
