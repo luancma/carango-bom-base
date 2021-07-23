@@ -1,5 +1,5 @@
 export default class BaseService {
-  BASE_API_URL = process.env.REACT_APP_PROD_BASE_URL;
+  BASE_API_URL = process.env.REACT_APP_LOCAL_BASE_API_URL;
   BASE_URL = "";
 
   constructor(url) {

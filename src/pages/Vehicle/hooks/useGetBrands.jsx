@@ -8,7 +8,7 @@ export function useGetBrands() {
     const fetchBrands = async () => {
       const resp = await BrandService.findAll();
       if (resp) {
-        return setBrands(formatBrands(resp.content));
+        return setBrands(formatBrands(resp));
       }
       return setBrands();
     };

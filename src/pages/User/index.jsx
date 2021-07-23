@@ -1,4 +1,4 @@
-import DataGridPaginated2 from "../../components/DataGridPaginated2";
+import DataGridPaginated2 from "../../components/DataGridPaginated";
 import React from "react";
 import { useHistory } from "react-router";
 import UserService from "../../services/UserService";

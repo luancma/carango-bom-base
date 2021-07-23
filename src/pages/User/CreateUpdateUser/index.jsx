@@ -15,20 +15,13 @@ function CreateUpdateUser() {
 		history.goBack();
 	}
 
-	const onSubmit = (username) => {
-
-		if (id) {
-			UserService.update(id, { id, username })
-				.then(res => {
-					history.goBack();
-				});
-		} else {
-			UserService.create({ username })
-				.then(res => {
-					history.goBack();
-				});
-		}
+	const onSubmit = (user) => {
+		UserService.create(user)
+			.then(res => {
+				history.goBack();
+			});
 	}
+
 
 	return (
 		<UserForm user={user} onSubmit={onSubmit} onCancel={onCancel} />
