@@ -4,6 +4,7 @@ import DataGridPaginated2 from "../../components/DataGridPaginated2";
 import React from "react";
 import { useHistory } from "react-router";
 import BrandService from "../../services/BrandService";
+import AddButton from "components/AddButton";
 
 const gridColumns = [{ field: "name", headerName: "Marca" }];
 
@@ -23,9 +24,6 @@ const useStyles = makeStyles(() => ({
 }));
 
 function BrandsList() {
-
-
-  const classes = useStyles();
   const history = useHistory();
 
   function alterar(id) {
@@ -46,15 +44,7 @@ function BrandsList() {
         onItemClick={alterar}
         onDelete={excluir}
       />
-
-      <Fab
-        color="primary"
-        aria-label="add"
-        className={classes.fab}
-        onClick={() => history.push("/brand/create")}
-      >
-        <AddIcon />
-      </Fab>
+      <AddButton onClick={() => history.push('/brand/create')} />
     </div>
   );
 }

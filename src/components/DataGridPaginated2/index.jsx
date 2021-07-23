@@ -53,6 +53,7 @@ const DataGridPaginated2 = ({
 
   return (
     <DataGrid
+      autoHeight
       loading={loading}
       pagination
       paginationMode="server"

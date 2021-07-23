@@ -3,6 +3,8 @@ import Brand from "../pages/Brand";
 import ListVehicle from "../pages/ListVehicle";
 import RegisterUser from "../pages/RegisterUser";
 import RegisterVehicle from "../pages/RegisterVehicle";
+import UserList from "pages/User";
+import CreateUpdateUser from "pages/User/CreateUpdateUser";
 
 export const authRoutes = [
   {
@@ -40,6 +42,17 @@ export const authRoutes = [
   {
     path: "/user",
     title: "Usuário",
-    component: RegisterUser,
+    component: UserList,
+    sidebar: true,
+  },
+  {
+    path: "/user/create",
+    title: "Usuário",
+    component: CreateUpdateUser,
+  },
+  {
+    path: "/user/:id",
+    title: "Usuário",
+    component: CreateUpdateUser,
   },
 ]
