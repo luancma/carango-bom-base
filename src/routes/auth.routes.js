@@ -5,6 +5,8 @@ import RegisterUser from "../pages/RegisterUser";
 import RegisterVehicle from "../pages/RegisterVehicle";
 import UserList from "pages/User";
 import CreateUpdateUser from "pages/User/CreateUpdateUser";
+import Dashboard from "pages/Dashboard";
+
 
 export const authRoutes = [
   {
@@ -54,5 +56,11 @@ export const authRoutes = [
     path: "/user/:id",
     title: "Usuário",
     component: CreateUpdateUser,
+  },
+  {
+    path: "/dashboard",
+    title: "Dashboard",
+    component: Dashboard,
+    sidebar: true,
   },
 ]
