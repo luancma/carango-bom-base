@@ -3,7 +3,7 @@ export default class BaseService {
 
   // BASE_API_URL = 'https://carango-bom-api.herokuapp.com/';
   // BASE_API_URL = 'https://backend-acelera.herokuapp.com';
-  BASE_API_URL = 'http://localhost:8080';
+  BASE_API_URL = process.env.REACT_APP_DB_BASE_URL;
   BASE_URL = '';
 
   constructor(url) {
