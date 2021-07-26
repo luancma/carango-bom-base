@@ -1,9 +1,10 @@
 import React from "react";
 import { useHistory } from "react-router";
-import DataGridPaginated2 from "components/DataGridPaginated";
+import DataGridPaginated from "components/DataGridPaginated";
 import CurrencyUtil from "util/CurrencyUtil";
 import VehicleService from "services/VehicleService";
 import AddButton from "components/AddButton";
+import { useAuth } from "context/AuthContext";
 
 const gridColumns = [
   {
@@ -35,6 +36,7 @@ const gridColumns = [
 
 const ListVehicle = () => {
   const history = useHistory();
+  const { isAuth } = useAuth();
 
   const handleItemClick = id => {
     if (id) {
@@ -52,13 +54,14 @@ const ListVehicle = () => {
   return (
     <>
       <div>
-        <DataGridPaginated2
+        <DataGridPaginated
           fetchItems={fetchVehicles}
           columns={gridColumns}
           onItemClick={handleItemClick}
           onDelete={handleDeleteItem}
+          readOnly={!isAuth}
         />
-        <AddButton onClick={() => history.push("/vehicle/create")} />
+        {isAuth && <AddButton onClick={() => history.push("/vehicle/create")} />}
       </div>
     </>
   );

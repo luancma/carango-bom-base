@@ -14,6 +14,7 @@ const DataGridPaginated = ({
   fetchItems,
   columns,
   onDelete,
+  readOnly = false
 }) => {
   const [page, setPage] = useState(0);
   const [items, setItems] = useState([]);
@@ -28,7 +29,7 @@ const DataGridPaginated = ({
       row: { id = null },
     } = param;
 
-    if (onItemClick) {
+    if (!readOnly && onItemClick) {
       onItemClick(id);
     }
   };
@@ -63,7 +64,8 @@ const DataGridPaginated = ({
     setPage(0);
   };
 
-  const gridColumns = makeDataGridColumns(columns, handleDelete);
+  const gridColumnOptions = { onDelete: handleDelete, enableDelete: !readOnly };
+  const gridColumns = makeDataGridColumns(columns, gridColumnOptions);
 
   return (
     <>

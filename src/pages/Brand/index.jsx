@@ -1,4 +1,4 @@
-import DataGridPaginated2 from "../../components/DataGridPaginated";
+import DataGridPaginated from "../../components/DataGridPaginated";
 import React from "react";
 import { useHistory } from "react-router";
 import BrandService from "../../services/BrandService";
@@ -21,7 +21,7 @@ function BrandsList() {
 
   return (
     <div style={{ height: 300, width: "100%" }}>
-      <DataGridPaginated2
+      <DataGridPaginated
         fetchItems={brandServiceList}
         columns={gridColumns}
         onItemClick={update}

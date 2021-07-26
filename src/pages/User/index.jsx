@@ -1,4 +1,4 @@
-import DataGridPaginated2 from "../../components/DataGridPaginated";
+import DataGridPaginated from "../../components/DataGridPaginated";
 import React from "react";
 import { useHistory } from "react-router";
 import UserService from "../../services/UserService";
@@ -17,7 +17,7 @@ function UserList() {
 
   return (
     <div style={{ height: 300, width: "100%" }}>
-      <DataGridPaginated2
+      <DataGridPaginated
         fetchItems={userServiceList}
         columns={gridColumns}
         onDelete={remove}

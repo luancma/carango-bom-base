@@ -1,4 +1,4 @@
-const API_URL = "https://backend-acelera.herokuapp.com";
+const API_URL = process.env.REACT_APP_LOCAL_BASE_API_URL;
 
 class LoginService {
   static async login(payload) {

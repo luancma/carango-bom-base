@@ -2,17 +2,21 @@ import React from "react";
 import LoginForm from "./LoginForm";
 import { useAuth } from "../../context/AuthContext";
 
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 function Login() {
 
   const { signIn, isAuth } = useAuth();
+  const history = useHistory();
 
   const onSubmit = async user => {
     try {
-      signIn({
+      const resp = signIn({
         username: user.username,
         password: user.password,
       });
+      if (resp.token) {
+        return history.push('/vehicles');
+      }
     } catch (error) {
       console.error(error);
     }

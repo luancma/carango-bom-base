@@ -22,12 +22,21 @@ describe("DataGrid Helper", () => {
     it("should return the actions column even if passing empty data column as parameter", () => {
       const expectedNumberOfColumns = 1;
       const expectedColumnIdentification = "id";
-      const actual = makeDataGridColumns([]);
+      const actual = makeDataGridColumns([], { enableDelete: true });
 
       expect(actual.length).toBe(expectedNumberOfColumns);
       expect(actual[0].field).toBe(expectedColumnIdentification);
     });
 
+    it("should not return the actions column if passing enableDelete equals false as column options", () => {
+      const expectedNumberOfColumns = 0;
+      const actual = makeDataGridColumns([], { enableDelete: false });
+
+      expect(actual.length).toBe(expectedNumberOfColumns);
+    });
+  });
+
+  describe('DeleteTooltipColumn tests', () => {
     it("should render remove icon", () => {
       const deleteFn = jest.fn();
       render(<DeleteTooltipColumn onDelete={deleteFn} id={1} />);
@@ -42,5 +51,5 @@ describe("DataGrid Helper", () => {
       userEvent.click(screen.getByRole("button", { name: /remover/i }));
       expect(deleteFn).toHaveBeenCalled();
     });
-  });
+  })
 });

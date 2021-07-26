@@ -12,6 +12,7 @@ export default class BaseService {
         method,
         headers: {
           "Content-Type": "application/json",
+          'Authorization': `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
         },
         body: object ? JSON.stringify(object) : null,
       });

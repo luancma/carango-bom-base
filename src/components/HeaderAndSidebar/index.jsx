@@ -10,11 +10,14 @@ import {
   ListItem,
   ListItemText,
   makeStyles,
+  Button,
 } from "@material-ui/core";
 import { ChevronLeft, Menu } from "@material-ui/icons";
 import { useLocation } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { authRoutes } from "routes/auth.routes";
+import { useAuth } from "context/AuthContext";
+
 
 const useStyles = makeStyles(theme => ({
   drawerHeader: {
@@ -31,6 +34,9 @@ function HeaderAndSidebar() {
   const [title, setTitle] = useState("");
   const [showSidebar, setShowSidebar] = useState(false);
   const location = useLocation();
+  const history = useHistory();
+
+  const { isAuth, logout } = useAuth();
 
   useEffect(() => {
     const firstPartOfPathMatcher = /^\/[^/]*/g; // e.g.: "/vehicle-edit/id" -> "/vehicle-edit"
@@ -44,12 +50,31 @@ function HeaderAndSidebar() {
     <>
       <AppBar position="fixed">
         <Toolbar>
-          <IconButton color="inherit" onClick={toggleSidebar} aria-label="menu">
-            <Menu />
-          </IconButton>
+          {
+            isAuth && (
+              <IconButton color="inherit" onClick={toggleSidebar} aria-label="menu">
+                <Menu />
+              </IconButton>
+            )
+          }
           <Typography className="text-center" variant="h6" component="h1">
             {title}
           </Typography>
+          {
+            isAuth ? (
+              <Button
+                onClick={() => logout()}
+                color="inherit">
+                Logout
+              </Button>
+            ) : (
+              <Button
+                onClick={() => history.push("/login")}
+                color="inherit">
+                Login
+              </Button>
+            )
+          }
         </Toolbar>
       </AppBar>
       <Drawer

@@ -30,11 +30,14 @@ const deleteColumn = onDelete => {
   };
 };
 
-export const makeDataGridColumns = (gridData, onDelete) => {
+export const makeDataGridColumns = (gridData, gridColumnOptions = {}) => {
+  const { onDelete, enableDelete = true } = gridColumnOptions
   const columns = [];
   gridData.forEach(data => {
     columns.push(data);
   });
-  columns.push(deleteColumn(onDelete));
+  if (enableDelete) {
+    columns.push(deleteColumn(onDelete));
+  }
   return columns;
 };
