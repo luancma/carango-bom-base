@@ -8,7 +8,7 @@ const confirmProps = {
   message: "Tem certeza que deseja excluir?",
 };
 
-const DataGridPaginated2 = ({
+const DataGridPaginated = ({
   onItemClick,
   itemsPerPage = 10,
   fetchItems,
@@ -92,4 +92,4 @@ const DataGridPaginated2 = ({
   );
 };
 
-export default DataGridPaginated2;
+export default DataGridPaginated;

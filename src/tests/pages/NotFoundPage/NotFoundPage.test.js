@@ -1,6 +1,6 @@
 import React from "react";
 import { screen, render, fireEvent } from "@testing-library/react";
-import NotFound from "../../pages/NotFound";
+import NotFound from "pages/NotFound";
 import { createMemoryHistory } from "history";
 import { Router } from "react-router-dom";
 

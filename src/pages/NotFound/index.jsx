@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography, Button, makeStyles } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
 import { useHistory } from "react-router-dom";
-import { paths } from "../components/HeaderAndSidebar/paths";
+import { authRoutes } from "routes/auth.routes";
 
 const useStyles = makeStyles({
   largeWrapper: {
@@ -17,7 +17,7 @@ export default function NotFound() {
   const styles = useStyles();
   const history = useHistory();
 
-  const handleClickHomeButton = () => history.push(paths.home);
+  const handleClickHomeButton = () => history.push("/");
 
   return (
     <Box>

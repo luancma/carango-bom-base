@@ -19,25 +19,24 @@ const rows = [{ id: 1, model: "Test" }];
 function generateNthItems(itemsLength) {
   const result = [];
   for (let i = 0; i < itemsLength; i += 1) {
-    result.push({ id: 1, model: `Test${i}` });
+    result.push({ id: i, model: `Test${i}` });
   }
   return result;
 }
 
 describe("DataGridPaginated test component", () => {
-  it("should render the grid component", () => {
+  it("should render the grid component", async () => {
     render(
       <DataGridPaginated
         columns={columns}
-        items={[]}
         onItemClick={() => {}}
-        fetchItems={() => {}}
+        fetchItems={() => ({ content: rows, totalElements: 1 })}
       />,
     );
-    expect(screen.getByRole("grid")).toBeInTheDocument();
+    expect(await screen.findByRole("grid")).toBeInTheDocument();
   });
 
-  it("should call onRowClick after click in the grid table row", () => {
+  it("should call onRowClick after click in the grid table row", async () => {
     const onRowClick = jest.fn();
 
     render(
@@ -45,27 +44,26 @@ describe("DataGridPaginated test component", () => {
         columns={columns}
         items={rows}
         onItemClick={onRowClick}
-        fetchItems={() => {}}
+        fetchItems={() => ({ content: rows, totalElements: 1 })}
       />,
     );
 
-    userEvent.click(screen.getByRole("row", { name: /Test/i }));
+    userEvent.click(await screen.findByRole("row", { name: /Test/i }));
 
     expect(onRowClick).toHaveBeenCalled();
   });
 
   it("should display itemsPerPage with the total items", async () => {
-    const items = generateNthItems(20);
+    const items = generateNthItems(10);
     render(
       <DataGridPaginated
         columns={columns}
-        items={items}
         itemsPerPage={10}
         onItemClick={() => {}}
-        fetchItems={() => {}}
+        fetchItems={() => ({ content: items, totalElements: 20 })}
       />,
     );
 
-    expect(screen.getByText(/1-10.*20/)).toBeInTheDocument();
+    expect(await screen.findByText(/1-10.*20/)).toBeInTheDocument();
   });
 });

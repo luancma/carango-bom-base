@@ -1,12 +1,12 @@
 import React from "react";
 import { screen, render, fireEvent } from "@testing-library/react";
-import VehicleForm from "../../components/VehicleForm";
+import VehicleForm from "pages/Vehicle/VehicleForm";
 import userEvent from "@testing-library/user-event";
 import {
   validations,
   minYear,
   maxYear,
-} from "components/VehicleForm/validations";
+} from "pages/Vehicle/VehicleForm/validations";
 
 const brandOptions = [
   { name: "brand 1", value: 1 },
@@ -61,26 +61,26 @@ describe("VehicleForm page", () => {
     });
     fireEvent.click(screen.getByRole("button", { name: /cadastrar/i }));
     expect(response).toEqual({
-      brand: "1",
+      brandId: "1",
       model: "Modelo X",
       year: 2020,
-      value: 40000,
+      price: 40000,
     });
   });
 
   it("should validate model and year", () => {
-    expect(validations.ano(minYear - 1)).toEqual({
-      valido: false,
-      texto: `Ano deve estar entre ${minYear} e ${maxYear}.`,
+    expect(validations.year(minYear - 1)).toEqual({
+      isValid: false,
+      text: `Ano deve estar entre ${minYear} e ${maxYear}.`,
     });
-    expect(validations.ano(maxYear)).toEqual({ valido: true, texto: "" });
-    expect(validations.modelo("A")).toEqual({
-      valido: false,
-      texto: "Modelo deve ter entre 2 e 100 caracteres.",
+    expect(validations.year(maxYear)).toEqual({ isValid: true, text: "" });
+    expect(validations.model("A")).toEqual({
+      isValid: false,
+      text: "Modelo deve ter entre 2 e 100 caracteres.",
     });
-    expect(validations.modelo("Modelo Válido")).toEqual({
-      valido: true,
-      texto: "",
+    expect(validations.model("Modelo Válido")).toEqual({
+      isValid: true,
+      text: "",
     });
   });
 });

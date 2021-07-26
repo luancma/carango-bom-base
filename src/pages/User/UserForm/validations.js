@@ -21,11 +21,3 @@ export const validations = {
     };
   },
 };
-
-export const validateConfirmPassword = (password, confirmPassword) => {
-  const isValid = password === confirmPassword;
-  return {
-    isValid,
-    text: isValid ? "" : "Senha e Confirmar Senha devem ser iguais.",
-  };
-};

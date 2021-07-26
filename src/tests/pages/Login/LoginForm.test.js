@@ -1,6 +1,6 @@
 import React from "react";
 import { screen, render, fireEvent } from "@testing-library/react";
-import LoginForm from "../../pages/Login/LoginForm";
+import LoginForm from "pages/Login/LoginForm";
 
 describe("LoginForm page", () => {
   it("should show form with all fields", () => {

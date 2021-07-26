@@ -40,13 +40,13 @@ export const authRoutes = [
   },
   {
     path: "/user",
-    title: "Usuário",
+    title: "Usuários",
     component: UserList,
     sidebar: true,
   },
   {
     path: "/user/create",
-    title: "Usuário",
+    title: "Usuários",
     component: CreateUpdateUser,
   },
-]
+];
