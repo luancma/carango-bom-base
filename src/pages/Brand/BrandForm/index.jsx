@@ -5,15 +5,14 @@ import FormActions from "components/FormActions";
 import InputText from "components/InputText";
 
 function BrandForm({ brand, onSubmit, onCancel }) {
-
   const [name, setName] = useState("");
   const [errors, validateFields, canSubmit] = useFormErrors(validations);
 
   useEffect(() => {
-    if (brand.name) {
-      setName(brand.name)
+    if (brand?.name) {
+      setName(brand.name);
     }
-  }, [brand])
+  }, [brand]);
 
   const handleSubmit = event => {
     event.preventDefault();

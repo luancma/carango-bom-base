@@ -1,21 +1,23 @@
-import StorageService from "./StorageService";
-
 const API_URL = "https://backend-acelera.herokuapp.com";
 
 class LoginService {
   static async login(payload) {
-    const response = await fetch(`${API_URL}/auth`, {
+    return fetch(`${API_URL}/auth`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(payload),
-    });
-    if (!response.ok) {
-      throw new Error(`Erro: ${response.status}`);
-    }
-    const { token } = await response.json();
-    StorageService.save("token", token);
+    })
+      .then(response => {
+        if (response.status === 200) {
+          return response.json();
+        }
+        throw new Error("Verifique os dados informados");
+      })
+      .catch(error => {
+        throw new Error(error);
+      })
   }
 }
 

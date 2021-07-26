@@ -9,15 +9,13 @@ import {
 
 describe("HeaderAndSidebar tests", () => {
   it("should render app bar title", () => {
-    renderWithRouter(<HeaderAndSidebar />);
-    expect(screen.getByRole("heading").textContent).toMatch(/carango bom/i);
+    renderWithRouter(<HeaderAndSidebar />, { route: "/vehicle" });
+    expect(screen.getByRole("heading").textContent).toMatch(/veículos/i);
   });
 
   it("should change title according to location", () => {
-    renderWithRouter(<HeaderAndSidebar />, { route: "/vehicle-new" });
-    expect(screen.getByRole("heading").textContent).toMatch(
-      /cadastrar veículo/i,
-    );
+    renderWithRouter(<HeaderAndSidebar />, { route: "/vehicle/create" });
+    expect(screen.getByRole("heading").textContent).toMatch(/veículos/i);
   });
 
   it("should show sidebar after clicking on menu", () => {

@@ -17,7 +17,7 @@ function VehicleForm({ onSubmit, onCancel, brandOptions, vehicle }) {
   const [errors, validateFields, canSubmit] = useFormErrors(validations);
 
   useEffect(() => {
-    if (vehicle.brand) {
+    if (vehicle?.brand) {
       setBrandId(vehicle.brand.id);
       setModel(vehicle.model);
       setYear(vehicle.year);

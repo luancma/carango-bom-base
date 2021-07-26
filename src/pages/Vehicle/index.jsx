@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router";
-import DataGridPaginated2 from "components/DataGridPaginated2";
+import DataGridPaginated2 from "components/DataGridPaginated";
 import CurrencyUtil from "util/CurrencyUtil";
 import VehicleService from "services/VehicleService";
 import AddButton from "components/AddButton";

@@ -5,7 +5,6 @@ import FormActions from "components/FormActions";
 import InputText from "components/InputText";
 
 function UserForm({ user, onSubmit, onCancel }) {
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -13,9 +12,9 @@ function UserForm({ user, onSubmit, onCancel }) {
 
   useEffect(() => {
     if (user?.username) {
-      setUsername(user.username)
+      setUsername(user.username);
     }
-  }, [user])
+  }, [user]);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -41,30 +40,37 @@ function UserForm({ user, onSubmit, onCancel }) {
       />
       <InputText
         label="Senha"
-        name="senha"
-        id="senha"
+        name="password"
+        id="password"
         value={password}
         onChange={setPassword}
         fullWidth
         required
         margin="normal"
-        // error={!errors.senha.valido}
-        // helperText={errors.senha.texto}
-        // onBlur={validateFields}
+        error={!errors.password.isValid}
+        helperText={errors.password.text}
+        onBlur={validateFields}
         type="password"
       />
       <InputText
         label="Confirmar Senha"
-        name="confirmar"
+        name="checkPassword"
         id="confirmar"
         value={confirmPassword}
         onChange={setConfirmPassword}
         fullWidth
         required
         margin="normal"
-        // error={!confirmError.valido}
-        // helperText={confirmError.texto}
-        // onBlur={checkConfirmPassword}
+        error={!errors.checkPassword.isValid}
+        helperText={errors.checkPassword.text}
+        onBlur={event =>
+          validateFields({
+            target: {
+              name: event.target.name,
+              value: { password, confirmPassword },
+            },
+          })
+        }
         type="password"
       />
       <FormActions onCancel={onCancel} isEdit={user && user.username} />
