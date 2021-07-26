@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import BrandService from "services/BrandService";
 
 export function useGetBrandById(id) {

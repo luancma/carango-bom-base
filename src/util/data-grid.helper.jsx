@@ -1,16 +1,13 @@
-import React from 'react';
-import { IconButton, Tooltip } from '@material-ui/core';
+import React from "react";
+import { IconButton, Tooltip } from "@material-ui/core";
 
 import { ReactComponent as DeleteIcon } from "assets/img/delete.svg";
 
-function DeleteTooltipColumn(onDelete, id) {
+export function DeleteTooltipColumn({ onDelete, id }) {
   return (
     <div>
       <Tooltip title="Remover">
-        <IconButton
-          aria-label="remover"
-          onClick={evt => onDelete(evt, id)}
-        >
+        <IconButton aria-label="remover" onClick={evt => onDelete(evt, id)}>
           <DeleteIcon />
         </IconButton>
       </Tooltip>
@@ -18,7 +15,7 @@ function DeleteTooltipColumn(onDelete, id) {
   );
 }
 
-const deleteColumn = (onDelete) => {
+const deleteColumn = onDelete => {
   return {
     field: "id",
     headerName: " ",
@@ -28,23 +25,16 @@ const deleteColumn = (onDelete) => {
     cellClassName: "",
     disableColumnMenu: true,
     renderCell: function DeleteItem({ row: { id } }) {
-
-      return DeleteTooltipColumn(onDelete, id)
+      return <DeleteTooltipColumn onDelete={onDelete} id={id} />;
     },
-  }
-}
+  };
+};
 
 export const makeDataGridColumns = (gridData, onDelete) => {
   const columns = [];
   gridData.forEach(data => {
-    const item = {
-      field: data.field,
-      headerName: data.headerName,
-      flex: 1
-    }
-    columns.push(item)
+    columns.push(data);
   });
-  columns.push(deleteColumn(onDelete))
+  columns.push(deleteColumn(onDelete));
   return columns;
-}
-
+};

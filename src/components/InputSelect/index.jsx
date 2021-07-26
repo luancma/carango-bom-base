@@ -28,10 +28,10 @@ const InputSelect = ({
         {...props}
       >
         <option value="" disabled>
-          {placeholder || "Selecione uma opção"}
+          {placeholder || ""}
         </option>
-        {itemsSelect.map(item => (
-          <option key={item.name} value={item.value}>
+        {itemsSelect.map((item, index) => (
+          <option key={`${item.value}-${index}`} value={item.value}>
             {item.name}
           </option>
         ))}

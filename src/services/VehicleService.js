@@ -6,4 +6,4 @@ class VehicleService extends BaseService {
   }
 }
 
-export default VehicleService;
+export default new VehicleService();

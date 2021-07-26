@@ -1,32 +1,26 @@
-import { makeStyles } from "@material-ui/core";
-import DataGridPaginated2 from "../../components/DataGridPaginated2";
+import DataGridPaginated2 from "../../components/DataGridPaginated";
 import React from "react";
 import { useHistory } from "react-router";
 import UserService from "../../services/UserService";
 import AddButton from "components/AddButton";
 
-const gridColumns = [{ field: "username", headerName: "Username" }];
+const gridColumns = [{ field: "username", flex: 1, headerName: "Username" }];
 
 function UserList() {
   const history = useHistory();
 
-  function alterar(id) {
-    history.push("/user/" + id);
-  }
-
-  async function excluir(id) {
+  async function remove(id) {
     await UserService.remove(id);
   }
 
-  const brandServiceListar = async (page, size, paged) => await UserService.findAll(page, size, paged);
+  const userServiceList = async (page, size) => await UserService.findAllPaged(page, size);
 
   return (
     <div style={{ height: 300, width: "100%" }}>
       <DataGridPaginated2
-        fetchItems={brandServiceListar}
+        fetchItems={userServiceList}
         columns={gridColumns}
-        onItemClick={alterar}
-        onDelete={excluir}
+        onDelete={remove}
       />
 
       <AddButton onClick={() => history.push('/user/create')} />

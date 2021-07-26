@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
-import FormActions from "../../components/FormActions";
+import FormActions from "components/FormActions";
 
 describe("FormActions tests", () => {
   it("should render buttons", () => {

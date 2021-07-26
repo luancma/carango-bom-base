@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext } from "react";
 import useSnackBar from "../hooks/useSnackBar";
 
 const SnackBarContext = createContext({});
@@ -10,24 +10,34 @@ export function SnackBarProvider({ children }) {
     message: "",
   };
 
-  const { state, showSuccessDialog, showErrorDialog, closeErrorDialog } = useSnackBar({
-    INTIAL_STATE,
-  });
+  const { state, showSuccessDialog, showErrorDialog, closeErrorDialog } =
+    useSnackBar({
+      INTIAL_STATE,
+    });
 
   return (
-    <SnackBarContext.Provider value={{
-        state, showSuccessDialog, showErrorDialog, closeErrorDialog
-    }}>{children}</SnackBarContext.Provider>
+    <SnackBarContext.Provider
+      value={{
+        state,
+        showSuccessDialog,
+        showErrorDialog,
+        closeErrorDialog,
+      }}
+    >
+      {children}
+    </SnackBarContext.Provider>
   );
 }
 
 function useSnackBarContext() {
-    const context = useContext(SnackBarContext);
-  
-    if (!context) {
-      throw new Error("useSnackBarContext must be used within an SnackBarProvider.");
-    }
-    return context;
+  const context = useContext(SnackBarContext);
+
+  if (!context) {
+    throw new Error(
+      "useSnackBarContext must be used within an SnackBarProvider.",
+    );
+  }
+  return context;
 }
-  
+
 export { SnackBarContext, useSnackBarContext };
