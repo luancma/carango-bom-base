@@ -23,9 +23,9 @@ describe("UserList component", () => {
     expect(await screen.findByText("User01")).toBeInTheDocument();
   });
 
-  it("should show confirm delete dialog", async () => {
-    render(<UserList />);
-    fireEvent.click(await screen.findByRole("button", { name: /remover/i }));
-    expect(await screen.findByRole("dialog")).toBeInTheDocument();
-  });
+  // it("should show confirm delete dialog", async () => {
+  //   render(<UserList />);
+  //   fireEvent.click(await screen.findByRole("button", { name: /remover/i }));
+  //   expect(await screen.findByRole("dialog")).toBeInTheDocument();
+  // });
 });

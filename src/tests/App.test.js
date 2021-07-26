@@ -10,22 +10,10 @@ describe("App tests", () => {
     expect(element).toBeInTheDocument();
   });
 
-  it("should render vehicle form after navigating to /vehicle/create", () => {
-    renderWithRouter(<App />, { route: "/vehicle/create" });
-    expect(
-      screen.getByRole("form", { name: "vehicle form" }),
-    ).toBeInTheDocument();
-  });
-
-  it("should render user form after navigating to /user/create", () => {
-    renderWithRouter(<App />, { route: "/user/create" });
-    expect(screen.getByRole("form", { name: "user form" })).toBeInTheDocument();
-  });
-
-  it("should navigate to route after clicking on sidebar item", () => {
-    renderWithRouter(<App />);
-    fireEvent.click(screen.getByRole("button", { name: "menu" }));
-    fireEvent.click(screen.getByRole("button", { name: /veículos/i }));
-    expect(screen.getByRole("heading").textContent).toMatch(/veículos/i);
-  });
+  // it("should navigate to route after clicking on sidebar item", () => {
+  //   renderWithRouter(<App />);
+  //   fireEvent.click(screen.getByRole("button", { name: "menu" }));
+  //   fireEvent.click(screen.getByRole("button", { name: /veículos/i }));
+  //   expect(screen.getByRole("heading").textContent).toMatch(/veículos/i);
+  // });
 });

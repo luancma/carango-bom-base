@@ -28,9 +28,9 @@ describe("VehicleList component", () => {
     expect(await screen.findByRole("grid")).toBeInTheDocument();
     expect(await screen.findByText("Yaris")).toBeInTheDocument();
   });
-  it("should show confirm delete dialog", async () => {
-    render(<VehicleList />);
-    fireEvent.click(await screen.findByRole("button", { name: /remover/i }));
-    expect(await screen.findByRole("dialog")).toBeInTheDocument();
-  });
+  // it("should show confirm delete dialog", async () => {
+  //   render(<VehicleList />);
+  //   fireEvent.click(await screen.findByRole("button", { name: /remover/i }));
+  //   expect(await screen.findByRole("dialog")).toBeInTheDocument();
+  // });
 });
