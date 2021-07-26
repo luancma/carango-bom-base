@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import useFormErrors from "hooks/useFormErrors";
-import { validations, checkConfirmPassword } from "./validations";
+import { validations } from "./validations";
 import FormActions from "components/FormActions";
 import InputText from "components/InputText";
 
 function UserForm({ user, onSubmit, onCancel }) {
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -13,9 +12,9 @@ function UserForm({ user, onSubmit, onCancel }) {
 
   useEffect(() => {
     if (user?.username) {
-      setUsername(user.username)
+      setUsername(user.username);
     }
-  }, [user])
+  }, [user]);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -64,7 +63,14 @@ function UserForm({ user, onSubmit, onCancel }) {
         margin="normal"
         error={!errors.checkPassword.isValid}
         helperText={errors.checkPassword.text}
-        onBlur={(event) => validateFields({ target: { name: event.target.name, value: { password, confirmPassword } } })}
+        onBlur={event =>
+          validateFields({
+            target: {
+              name: event.target.name,
+              value: { password, confirmPassword },
+            },
+          })
+        }
         type="password"
       />
       <FormActions onCancel={onCancel} isEdit={user && user.username} />

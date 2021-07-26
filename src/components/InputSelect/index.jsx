@@ -30,8 +30,8 @@ const InputSelect = ({
         <option value="" disabled>
           {placeholder || ""}
         </option>
-        {itemsSelect.map(item => (
-          <option key={item.name} value={item.value}>
+        {itemsSelect.map((item, index) => (
+          <option key={`${item.value}-${index}`} value={item.value}>
             {item.name}
           </option>
         ))}
