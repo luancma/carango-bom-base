@@ -41,8 +41,8 @@ const DataGridPaginated2 = ({
     setLoading(true);
     const getItems = async () => {
       const resp = await fetchItems(page, itemsPerPage);
-      setTotal(resp.totalElements);
-      setItems(resp.content);
+      setTotal(resp?.totalElements || 0);
+      setItems(resp?.content || []);
       setLoading(false);
     };
 
